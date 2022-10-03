@@ -227,7 +227,7 @@ int main(int argc, char** argv)
        {
           the_function = boost::math::beta;
           function_name = arg;
-          if (log_scale == false)
+          if (!log_scale)
           {
              std::cout << "Setting log scale to true for beta" << std::endl;
              log_scale = true;
@@ -266,7 +266,7 @@ int main(int argc, char** argv)
              x_min = 0.5;
              x_max = 1.5;
           }
-          if (log_scale == false)
+          if (!log_scale)
           {
              std::cout << "Turning on log scale for cyl_neumann" << std::endl;
              log_scale = true;
@@ -288,7 +288,7 @@ int main(int argc, char** argv)
              x_min = 0.5;
              x_max = 1.5;
           }
-          if (log_scale == false)
+          if (!log_scale)
           {
              std::cout << "Turning on log scale for cyl_bessel_i" << std::endl;
              log_scale = true;
@@ -310,7 +310,7 @@ int main(int argc, char** argv)
              x_min = 0.01;
              x_max = 5;
           }
-          if (log_scale == false)
+          if (!log_scale)
           {
              std::cout << "Turning on log scale for cyl_bessel_k" << std::endl;
              log_scale = true;
@@ -320,7 +320,7 @@ int main(int argc, char** argv)
        {
           the_function = boost::math::cyl_bessel_k;
           function_name = arg;
-          if (log_scale == false)
+          if (!log_scale)
           {
              std::cout << "Turning on log scale for cyl_bessel_d" << std::endl;
              log_scale = true;
@@ -341,7 +341,7 @@ int main(int argc, char** argv)
              std::cout << "Setting ellint_1 y range to [0, 1.5]" << std::endl;
              x_max = 1.5;
           }
-          if (log_scale == false)
+          if (!log_scale)
           {
              std::cout << "Turning on log scale for ellint_1" << std::endl;
              log_scale = true;
@@ -369,7 +369,7 @@ int main(int argc, char** argv)
              std::cout << "Setting ellint_2 y range to [0, 1.5]" << std::endl;
              y_max = 1.5;
           }
-          if (log_scale == false)
+          if (!log_scale)
           {
              std::cout << "Turning on log scale for ellint_2" << std::endl;
              log_scale = true;
@@ -397,7 +397,7 @@ int main(int argc, char** argv)
              std::cout << "Setting ellint_3 y range to [0, 1]" << std::endl;
              y_max = 1;
           }
-          if (log_scale == false)
+          if (!log_scale)
           {
              std::cout << "Turning on log scale for ellint_3" << std::endl;
              log_scale = true;

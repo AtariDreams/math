@@ -517,7 +517,7 @@ std::pair<T, T> bracket_and_solve_root(F f, const T& guess, T factor, bool risin
 
    int step = 32;
 
-   if((fa < 0) == (guess < 0 ? !rising : rising))
+   if((fa < 0) == (guess < 0 == !rising))
    {
       //
       // Zero is to the right of b, so walk upwards

@@ -1723,10 +1723,11 @@ inline T lambert_w0_imp(T z, const Policy& pol, const std::integral_constant<int
    // false_type if a single Halley step is sufficient.
 
    using precision_type = typename policies::precision<T, Policy>::type;
+   // If true, then unknown at compile-time, variable/arbitrary, or more than float128 or cpp_bin_quad 128-bit precision.
+   // If false, then float, double, float128, cpp_bin_quad 128-bit, so single Halley step.
    using tag_type = std::integral_constant<bool,
-      (precision_type::value == 0) || (precision_type::value > 113) ?
-      true // Unknown at compile-time, variable/arbitrary, or more than float128 or cpp_bin_quad 128-bit precision.
-      : false // float, double, float128, cpp_bin_quad 128-bit, so single Halley step.
+           (precision_type::value == 0) ||
+           (precision_type::value > 113) // float, double, float128, cpp_bin_quad 128-bit, so single Halley step.
    >;
 
    // For speed, we also cast z to type double when that is possible

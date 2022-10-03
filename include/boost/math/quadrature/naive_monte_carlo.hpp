@@ -439,12 +439,12 @@ private:
     uint64_t m_num_threads;
     std::atomic<uint64_t> m_seed;
     std::atomic<Real> m_error_goal;
-    std::atomic<bool> m_done;
+    std::atomic<bool> m_done{};
     std::vector<Real> m_lbs;
     std::vector<Real> m_dxs;
     std::vector<detail::limit_classification> m_limit_types;
     Real m_volume;
-    std::atomic<uint64_t> m_total_calls;
+    std::atomic<uint64_t> m_total_calls{};
     // I wanted these to be vectors rather than maps,
     // but you can't resize a vector of atomics.
     std::unique_ptr<std::atomic<uint64_t>[]> m_thread_calls;

@@ -334,7 +334,7 @@ namespace boost
             BOOST_MATH_STD_USING
             value_type result;
             if(l == 0)
-              return invert == false ? cdf(boost::math::chi_squared_distribution<RealType, Policy>(k), x) : cdf(complement(boost::math::chi_squared_distribution<RealType, Policy>(k), x));
+              return !invert ? cdf(boost::math::chi_squared_distribution<RealType, Policy>(k), x) : cdf(complement(boost::math::chi_squared_distribution<RealType, Policy>(k), x));
             else if(x > k + l)
             {
                // Complement is the smaller of the two:
@@ -585,7 +585,7 @@ namespace boost
                   "Can't find degrees of freedom when the probability is 0 or 1, only possible answer is %1%",
                   RealType(std::numeric_limits<RealType>::quiet_NaN()), Policy());
             }
-            degrees_of_freedom_finder<RealType, Policy> f(lam, x, p < q ? p : q, p < q ? false : true);
+            degrees_of_freedom_finder<RealType, Policy> f(lam, x, p < q ? p : q, p >= q);
             tools::eps_tolerance<RealType> tol(policies::digits<RealType, Policy>());
             std::uintmax_t max_iter = policies::get_max_root_iterations<Policy>();
             //
@@ -641,7 +641,7 @@ namespace boost
                   "Can't find non centrality parameter when the probability is 0 or 1, only possible answer is %1%",
                   RealType(std::numeric_limits<RealType>::quiet_NaN()), Policy());
             }
-            non_centrality_finder<RealType, Policy> f(v, x, p < q ? p : q, p < q ? false : true);
+            non_centrality_finder<RealType, Policy> f(v, x, p < q ? p : q, p >= q);
             tools::eps_tolerance<RealType> tol(policies::digits<RealType, Policy>());
             std::uintmax_t max_iter = policies::get_max_root_iterations<Policy>();
             //
