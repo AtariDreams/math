@@ -205,7 +205,7 @@ private:
       clear(m_value);
       int exp = 0;
       NTL::RR t;
-      bool neg = a < V(0) ? true : false;
+      bool neg = a < V(0);
       if(neg)
          a = -a;
       while(a)
@@ -251,17 +251,17 @@ inline RR operator/(const RR& a, const RR& b)
 
 // Comparison:
 inline bool operator == (const RR& a, const RR& b)
-{ return a.value() == b.value() ? true : false; }
+{ return a.value() == b.value(); }
 inline bool operator != (const RR& a, const RR& b)
-{ return a.value() != b.value() ? true : false;}
+{ return a.value() != b.value();}
 inline bool operator < (const RR& a, const RR& b)
-{ return a.value() < b.value() ? true : false; }
+{ return a.value() < b.value(); }
 inline bool operator <= (const RR& a, const RR& b)
-{ return a.value() <= b.value() ? true : false; }
+{ return a.value() <= b.value(); }
 inline bool operator > (const RR& a, const RR& b)
-{ return a.value() > b.value() ? true : false; }
+{ return a.value() > b.value(); }
 inline bool operator >= (const RR& a, const RR& b)
-{ return a.value() >= b.value() ? true : false; }
+{ return a.value() >= b.value(); }
 
 #if 0
 // Non-member mixed compare:

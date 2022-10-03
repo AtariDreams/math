@@ -305,7 +305,7 @@ namespace boost
             //
             std::uintmax_t count = max_iter - 1;
 
-            if((fa < 0) == (guess < 0 ? !rising : rising))
+            if((fa < 0) == (guess < 0 == !rising))
             {
                //
                // Zero is to the right of b, so walk upwards

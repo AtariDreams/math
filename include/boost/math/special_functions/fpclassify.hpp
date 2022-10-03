@@ -400,7 +400,7 @@ namespace detail {
       if(std::numeric_limits<T>::is_specialized)
          return isnormal_impl(x, generic_tag<true>());
 #endif
-       return !(x == 0);
+       return x != 0;
     }
 
     template<class T>
@@ -556,7 +556,7 @@ namespace detail {
     inline bool isnan_impl(T x, generic_tag<true> const&)
     {
         return std::numeric_limits<T>::has_infinity
-            ? !(x <= std::numeric_limits<T>::infinity())
+            ? x > std::numeric_limits<T>::infinity()
             : x != x;
     }
 

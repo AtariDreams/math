@@ -52,7 +52,7 @@ private:
 
 struct equal_floor
 {
-   equal_floor(){}
+   equal_floor()= default;
    template <class T>
    bool operator()(const T& a, const T& b)
    {
@@ -63,7 +63,7 @@ struct equal_floor
 
 struct equal_ceil
 {
-   equal_ceil(){}
+   equal_ceil()= default;
    template <class T>
    bool operator()(const T& a, const T& b)
    {
@@ -74,7 +74,7 @@ struct equal_ceil
 
 struct equal_nearest_integer
 {
-   equal_nearest_integer(){}
+   equal_nearest_integer()= default;
    template <class T>
    bool operator()(const T& a, const T& b)
    {

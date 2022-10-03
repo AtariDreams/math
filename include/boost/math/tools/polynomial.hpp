@@ -283,7 +283,7 @@ public:
    typedef typename std::vector<T>::size_type size_type;
 
    // construct:
-   polynomial(){}
+   polynomial()= default;
 
    template <class U>
    polynomial(const U* data, unsigned order)

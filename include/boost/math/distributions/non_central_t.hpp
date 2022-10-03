@@ -349,7 +349,7 @@ namespace boost
                static_cast<value_type>(v),
                static_cast<value_type>(delta),
                static_cast<value_type>(0),
-               !(p < q),
+               p >= q,
                forwarding_policy());
             int s;
             if(p < q)

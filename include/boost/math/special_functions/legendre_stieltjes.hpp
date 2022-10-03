@@ -38,8 +38,7 @@ public:
         std::ptrdiff_t n = m - 1;
         std::ptrdiff_t q;
         std::ptrdiff_t r;
-        bool odd = n & 1;
-        if (odd)
+        if (n & 1 == 1) // is it odd?
         {
            q = 1;
            r = (n-1)/2 + 2;

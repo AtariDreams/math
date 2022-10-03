@@ -22,7 +22,7 @@ namespace detail {
 template <typename Real>
 inline constexpr Real sqrt_impl_2(Real x, Real s, Real s2)
 {
-    return !(s < s2) ? s2 : sqrt_impl_2(x, (x / s + s) / 2, s);
+    return s >= s2 ? s2 : sqrt_impl_2(x, (x / s + s) / 2, s);
 }
 
 template <typename Real>
