@@ -194,7 +194,7 @@ public:
          chartreuse
       };
 
-      if(m_pdf == false)
+      if(!m_pdf)
       {
          m_min_y = 0;
          m_max_y = 1;

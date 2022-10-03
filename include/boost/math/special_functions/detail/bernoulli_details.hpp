@@ -149,7 +149,8 @@ inline T tangent_scale_factor()
    return ldexp(T(1), std::numeric_limits<T>::min_exponent + 5);
 }
 
-template <class T, typename std::enable_if<!std::numeric_limits<T>::is_specialized || !(std::numeric_limits<T>::radix == 2), bool>::type = true>
+template <class T, typename std::enable_if<!std::numeric_limits<T>::is_specialized ||
+                                           std::numeric_limits<T>::radix != 2, bool>::type = true>
 inline T tangent_scale_factor()
 {
    return tools::min_value<T>() * 16;

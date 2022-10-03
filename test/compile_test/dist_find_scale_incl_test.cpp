@@ -19,7 +19,7 @@ class test_distribution
 public:
    typedef T value_type;
    typedef Policy policy_type;
-   test_distribution(){}
+   test_distribution()= default;
 };
 
 template <class T, class Policy>

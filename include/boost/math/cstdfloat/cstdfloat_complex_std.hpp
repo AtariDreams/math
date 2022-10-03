@@ -437,7 +437,7 @@
         }
         else
         {
-          if(im_isneg == false)
+          if(!im_isneg)
           {
             return std::complex<BOOST_CSTDFLOAT_EXTENDED_COMPLEX_FLOAT_TYPE>
                    (
