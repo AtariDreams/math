@@ -14,7 +14,7 @@
    class fisher_f_distribution
    {
    public:
-      typedef RealType value_type;
+      using value_type = RealType;
       
       // Construct:
       fisher_f_distribution(const RealType& i, const RealType& j);

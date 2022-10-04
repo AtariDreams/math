@@ -89,11 +89,7 @@ namespace boost
       template <class RealType, class Policy>
       inline bool check_dist_and_prob(const char* function, RealType p, RealType prob, RealType* result, const Policy& /* pol */)
       {
-        if((check_dist(function, p, result, Policy(), typename policies::method_error_check<Policy>::type()) && detail::check_probability(function, prob, result, Policy())) == false)
-        {
-          return false;
-        }
-        return true;
+        return static_cast<bool>((check_dist(function, p, result, Policy(), typename policies::method_error_check<Policy>::type()) && detail::check_probability(function, prob, result, Policy())) != false);
       }
     } // namespace bernoulli_detail
 
@@ -102,8 +98,8 @@ namespace boost
     class bernoulli_distribution
     {
     public:
-      typedef RealType value_type;
-      typedef Policy policy_type;
+      using value_type = RealType;
+      using policy_type = Policy;
 
       bernoulli_distribution(RealType p = 0.5) : m_p(p)
       { // Default probability = half suits 'fair' coin tossing
@@ -124,7 +120,7 @@ namespace boost
       RealType m_p; // success_fraction
     }; // template <class RealType> class bernoulli_distribution
 
-    typedef bernoulli_distribution<double> bernoulli;
+    using bernoulli = bernoulli_distribution<double>;
 
     #ifdef __cpp_deduction_guides
     template <class RealType>

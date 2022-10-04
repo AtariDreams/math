@@ -9,7 +9,7 @@
    class inverse_chi_squared_distribution
    {
    public:
-      typedef RealType value_type;
+      using value_type = RealType;
       typedef Policy   policy_type;
 
       inverse_chi_squared_distribution(RealType df = 1); // Not explicitly scaled, default 1/df.

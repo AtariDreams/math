@@ -668,8 +668,8 @@ namespace boost
       class non_central_chi_squared_distribution
       {
       public:
-         typedef RealType value_type;
-         typedef Policy policy_type;
+         using value_type = RealType;
+         using policy_type = Policy;
 
          non_central_chi_squared_distribution(RealType df_, RealType lambda) : df(df_), ncp(lambda)
          {

@@ -23,8 +23,8 @@ template <typename Real>
 inline constexpr Real modf_error_impl(Real x, Real* iptr)
 {
     *iptr = x;
-    return boost::math::ccmath::abs(x) == Real(0) ? x :
-           x > Real(0) ? Real(0) : -Real(0);
+    return boost::math::ccmath::abs(x) == static_cast<Real>(0) ? x :
+           x > static_cast<Real>(0) ? static_cast<Real>(0) : -static_cast<Real>(0);
 }
 
 template <typename Real>
@@ -48,7 +48,7 @@ inline constexpr Real modf(Real x, Real* iptr)
 {
     if(BOOST_MATH_IS_CONSTANT_EVALUATED(x))
     {
-        return boost::math::ccmath::abs(x) == Real(0) ? detail::modf_error_impl(x, iptr) :
+        return boost::math::ccmath::abs(x) == static_cast<Real>(0) ? detail::modf_error_impl(x, iptr) :
                boost::math::ccmath::isinf(x) ? detail::modf_error_impl(x, iptr) :
                boost::math::ccmath::isnan(x) ? detail::modf_nan_impl(x, iptr) :
                boost::math::ccmath::detail::modf_impl(x, iptr);

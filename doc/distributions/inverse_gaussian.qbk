@@ -9,7 +9,7 @@
    class inverse_gaussian_distribution
    {
    public:
-      typedef RealType value_type;
+      using value_type = RealType;
       typedef Policy   policy_type;
 
       inverse_gaussian_distribution(RealType mean = 1, RealType scale = 1);

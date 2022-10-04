@@ -343,9 +343,9 @@
     #endif
 
     #if(BOOST_CSTDFLOAT_HAS_FLOAT32_NATIVE_TYPE == 1)
-      typedef BOOST_CSTDFLOAT_FLOAT32_NATIVE_TYPE float32_t;
-      typedef boost::float32_t float_fast32_t;
-      typedef boost::float32_t float_least32_t;
+      using float32_t = float;
+      using float_fast32_t = boost::float32_t;
+      using float_least32_t = boost::float32_t;
 
       static_assert(std::numeric_limits<boost::float32_t>::is_iec559    == true, "boost::float32_t has been detected in <boost/cstdfloat>, but verification with std::numeric_limits fails");
       static_assert(std::numeric_limits<boost::float32_t>::radix        ==    2, "boost::float32_t has been detected in <boost/cstdfloat>, but verification with std::numeric_limits fails");
@@ -418,7 +418,7 @@
     #elif(BOOST_CSTDFLOAT_MAXIMUM_AVAILABLE_WIDTH ==  32)
       typedef boost::float32_t  floatmax_t;
     #elif(BOOST_CSTDFLOAT_MAXIMUM_AVAILABLE_WIDTH ==  64)
-      typedef boost::float64_t  floatmax_t;
+      using floatmax_t = boost::float64_t;
     #elif(BOOST_CSTDFLOAT_MAXIMUM_AVAILABLE_WIDTH ==  80)
       typedef boost::float80_t  floatmax_t;
     #elif(BOOST_CSTDFLOAT_MAXIMUM_AVAILABLE_WIDTH == 128)

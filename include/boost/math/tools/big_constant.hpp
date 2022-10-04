@@ -38,7 +38,7 @@ struct numeric_traits<__float128>
 typedef long double largest_float;
 #define BOOST_MATH_LARGEST_FLOAT_C(x) x##L
 #else
-typedef double largest_float;
+using largest_float = double;
 #define BOOST_MATH_LARGEST_FLOAT_C(x) x
 #endif
 

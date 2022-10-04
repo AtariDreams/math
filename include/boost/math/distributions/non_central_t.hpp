@@ -718,8 +718,8 @@ namespace boost
       class non_central_t_distribution
       {
       public:
-         typedef RealType value_type;
-         typedef Policy policy_type;
+         using value_type = RealType;
+         using policy_type = Policy;
 
          non_central_t_distribution(RealType v_, RealType lambda) : v(v_), ncp(lambda)
          {

@@ -190,8 +190,8 @@ template <class RealType = double, class Policy = policies::policy<> >
     class kolmogorov_smirnov_distribution
 {
     public:
-        typedef RealType value_type;
-        typedef Policy policy_type;
+        using value_type = RealType;
+        using policy_type = Policy;
 
         // Constructor
     kolmogorov_smirnov_distribution( RealType n ) : n_obs_(n)
@@ -211,7 +211,7 @@ template <class RealType = double, class Policy = policies::policy<> >
     RealType n_obs_; // positive integer
 };
 
-typedef kolmogorov_smirnov_distribution<double> kolmogorov_k; // Convenience typedef for double version.
+using kolmogorov_k = kolmogorov_smirnov_distribution<double>; // Convenience typedef for double version.
 
 #ifdef __cpp_deduction_guides
 template <class RealType>
@@ -296,10 +296,10 @@ inline RealType pdf(const kolmogorov_smirnov_distribution<RealType, Policy>& dis
    RealType n = dist.number_of_observations();
    RealType error_result;
    static const char* function = "boost::math::pdf(const kolmogorov_smirnov_distribution<%1%>&, %1%)";
-   if(false == detail::check_x_not_NaN(function, x, &error_result, Policy()))
+   if(!static_cast<bool>(detail::check_x_not_NaN(function, x, &error_result, Policy())))
       return error_result;
 
-   if(false == detail::check_df(function, n, &error_result, Policy()))
+   if(!static_cast<bool>(detail::check_df(function, n, &error_result, Policy())))
       return error_result;
 
    if (x < 0 || !(boost::math::isfinite)(x))
@@ -322,9 +322,9 @@ inline RealType cdf(const kolmogorov_smirnov_distribution<RealType, Policy>& dis
    static const char* function = "boost::math::cdf(const kolmogorov_smirnov_distribution<%1%>&, %1%)";
    RealType error_result;
    RealType n = dist.number_of_observations();
-   if(false == detail::check_x_not_NaN(function, x, &error_result, Policy()))
+   if(!static_cast<bool>(detail::check_x_not_NaN(function, x, &error_result, Policy())))
       return error_result;
-   if(false == detail::check_df(function, n, &error_result, Policy()))
+   if(!static_cast<bool>(detail::check_df(function, n, &error_result, Policy())))
       return error_result;
    if((x < 0) || !(boost::math::isfinite)(x)) {
       return policies::raise_domain_error<RealType>(
@@ -346,9 +346,9 @@ inline RealType cdf(const complemented2_type<kolmogorov_smirnov_distribution<Rea
    kolmogorov_smirnov_distribution<RealType, Policy> const& dist = c.dist;
    RealType n = dist.number_of_observations();
 
-   if(false == detail::check_x_not_NaN(function, x, &error_result, Policy()))
+   if(!static_cast<bool>(detail::check_x_not_NaN(function, x, &error_result, Policy())))
       return error_result;
-   if(false == detail::check_df(function, n, &error_result, Policy()))
+   if(!static_cast<bool>(detail::check_df(function, n, &error_result, Policy())))
       return error_result;
 
    if((x < 0) || !(boost::math::isfinite)(x))
@@ -372,9 +372,9 @@ inline RealType quantile(const kolmogorov_smirnov_distribution<RealType, Policy>
    // Error check:
    RealType error_result;
    RealType n = dist.number_of_observations();
-   if(false == detail::check_probability(function, p, &error_result, Policy()))
+   if(!static_cast<bool>(detail::check_probability(function, p, &error_result, Policy())))
       return error_result;
-   if(false == detail::check_df(function, n, &error_result, Policy()))
+   if(!static_cast<bool>(detail::check_df(function, n, &error_result, Policy())))
       return error_result;
 
    RealType k = detail::kolmogorov_smirnov_quantile_guess(p) / sqrt(n);
@@ -395,9 +395,9 @@ inline RealType quantile(const complemented2_type<kolmogorov_smirnov_distributio
    RealType error_result;
    RealType p = c.param;
 
-   if(false == detail::check_probability(function, p, &error_result, Policy()))
+   if(!static_cast<bool>(detail::check_probability(function, p, &error_result, Policy())))
       return error_result;
-   if(false == detail::check_df(function, n, &error_result, Policy()))
+   if(!static_cast<bool>(detail::check_df(function, n, &error_result, Policy())))
       return error_result;
 
    RealType k = detail::kolmogorov_smirnov_quantile_guess(RealType(1-p)) / sqrt(n);
@@ -417,7 +417,7 @@ inline RealType mode(const kolmogorov_smirnov_distribution<RealType, Policy>& di
    static const char* function = "boost::math::mode(const kolmogorov_smirnov_distribution<%1%>&)";
    RealType n = dist.number_of_observations();
    RealType error_result;
-   if(false == detail::check_df(function, n, &error_result, Policy()))
+   if(!static_cast<bool>(detail::check_df(function, n, &error_result, Policy())))
       return error_result;
 
     std::pair<RealType, RealType> r = boost::math::tools::brent_find_minima(
@@ -435,7 +435,7 @@ inline RealType mean(const kolmogorov_smirnov_distribution<RealType, Policy>& di
    static const char* function = "boost::math::mean(const kolmogorov_smirnov_distribution<%1%>&)";
     RealType n = dist.number_of_observations();
     RealType error_result;
-    if(false == detail::check_df(function, n, &error_result, Policy()))
+    if(!static_cast<bool>(detail::check_df(function, n, &error_result, Policy())))
         return error_result;
     return constants::root_half_pi<RealType>() * constants::ln_two<RealType>() / sqrt(n);
 }
@@ -446,7 +446,7 @@ inline RealType variance(const kolmogorov_smirnov_distribution<RealType, Policy>
    static const char* function = "boost::math::variance(const kolmogorov_smirnov_distribution<%1%>&)";
     RealType n = dist.number_of_observations();
     RealType error_result;
-    if(false == detail::check_df(function, n, &error_result, Policy()))
+    if(!static_cast<bool>(detail::check_df(function, n, &error_result, Policy())))
         return error_result;
     return (constants::pi_sqr_div_six<RealType>()
             - constants::pi<RealType>() * constants::ln_two<RealType>() * constants::ln_two<RealType>()) / (2*n);
@@ -461,7 +461,7 @@ inline RealType skewness(const kolmogorov_smirnov_distribution<RealType, Policy>
    static const char* function = "boost::math::skewness(const kolmogorov_smirnov_distribution<%1%>&)";
     RealType n = dist.number_of_observations();
     RealType error_result;
-    if(false == detail::check_df(function, n, &error_result, Policy()))
+    if(!static_cast<bool>(detail::check_df(function, n, &error_result, Policy())))
         return error_result;
     RealType ex3 = RealType(0.5625) * constants::root_half_pi<RealType>() * constants::zeta_three<RealType>() / n / sqrt(n);
     RealType mean = boost::math::mean(dist);
@@ -476,7 +476,7 @@ inline RealType kurtosis(const kolmogorov_smirnov_distribution<RealType, Policy>
    static const char* function = "boost::math::kurtosis(const kolmogorov_smirnov_distribution<%1%>&)";
     RealType n = dist.number_of_observations();
     RealType error_result;
-    if(false == detail::check_df(function, n, &error_result, Policy()))
+    if(!static_cast<bool>(detail::check_df(function, n, &error_result, Policy())))
         return error_result;
     RealType ex4 = 7 * constants::pi_sqr_div_six<RealType>() * constants::pi_sqr_div_six<RealType>() / 20 / n / n;
     RealType mean = boost::math::mean(dist);
@@ -491,7 +491,7 @@ inline RealType kurtosis_excess(const kolmogorov_smirnov_distribution<RealType, 
    static const char* function = "boost::math::kurtosis_excess(const kolmogorov_smirnov_distribution<%1%>&)";
     RealType n = dist.number_of_observations();
     RealType error_result;
-    if(false == detail::check_df(function, n, &error_result, Policy()))
+    if(!static_cast<bool>(detail::check_df(function, n, &error_result, Policy())))
         return error_result;
     return kurtosis(dist) - 3;
 }

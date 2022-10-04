@@ -251,7 +251,7 @@ public:
             Real absolute_error_estimate = abs(I0-I1);
             Real scale = (max)(abs(I0), abs(I1));
             if (!isnan(I1) && absolute_error_estimate <= rel_err_goal_*scale) {
-                starting_level_ = (max)(long(i) - 1, long(0));
+                starting_level_ = (max)(static_cast<long>(i) - 1, static_cast<long>(0));
                 return {I0/omega, absolute_error_estimate/scale};
             }
             I1 = I0;
@@ -282,7 +282,7 @@ public:
             print_ooura_estimate(ii, I0, I1, omega);
 #endif
             if (absolute_error_estimate <= rel_err_goal_*scale) {
-                starting_level_ = (max)(long(ii) - 1, long(0));
+                starting_level_ = (max)(static_cast<long>(ii) - 1, static_cast<long>(0));
                 return {I0/omega, absolute_error_estimate/scale};
             }
             I1 = I0;
@@ -503,7 +503,7 @@ public:
             absolute_error_estimate = abs(I0-I1);
             scale = (max)(abs(I0), abs(I1));
             if (!isnan(I1) && absolute_error_estimate <= rel_err_goal_*scale) {
-                starting_level_ = (max)(long(i) - 1, long(0));
+                starting_level_ = (max)(static_cast<long>(i) - 1, static_cast<long>(0));
                 return {I0/omega, absolute_error_estimate/scale};
             }
             I1 = I0;
@@ -528,7 +528,7 @@ public:
             absolute_error_estimate = abs(I0-I1);
             scale = (max)(abs(I0), abs(I1));
             if (absolute_error_estimate <= rel_err_goal_*scale) {
-                starting_level_ = (max)(long(ii) - 1, long(0));
+                starting_level_ = (max)(static_cast<long>(ii) - 1, static_cast<long>(0));
                 return {I0/omega, absolute_error_estimate/scale};
             }
             I1 = I0;

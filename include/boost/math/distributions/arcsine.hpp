@@ -164,8 +164,8 @@ namespace boost
     class arcsine_distribution
     {
     public:
-      typedef RealType value_type;
-      typedef Policy policy_type;
+      using value_type = RealType;
+      using policy_type = Policy;
 
       arcsine_distribution(RealType x_min = 0, RealType x_max = 1) : m_x_min(x_min), m_x_max(x_max)
       { // Default beta (alpha = beta = 0.5) is standard arcsine with x_min = 0, x_max = 1.
@@ -193,7 +193,7 @@ namespace boost
     }; // template <class RealType, class Policy> class arcsine_distribution
 
     // Convenient typedef to construct double version.
-    typedef arcsine_distribution<double> arcsine;
+    using arcsine = arcsine_distribution<double>;
 
     #ifdef __cpp_deduction_guides
     template <class RealType>
@@ -223,11 +223,11 @@ namespace boost
       RealType x_min = dist.x_min();
       RealType x_max = dist.x_max();
 
-      if (false == arcsine_detail::check_dist(
+      if (!static_cast<bool>(arcsine_detail::check_dist(
         "boost::math::mean(arcsine_distribution<%1%> const&, %1% )",
         x_min,
         x_max,
-        &result, Policy())
+        &result, Policy()))
         )
       {
         return result;
@@ -241,11 +241,11 @@ namespace boost
       RealType result;
       RealType x_min = dist.x_min();
       RealType x_max = dist.x_max();
-      if (false == arcsine_detail::check_dist(
+      if (!static_cast<bool>(arcsine_detail::check_dist(
         "boost::math::variance(arcsine_distribution<%1%> const&, %1% )",
         x_min,
         x_max,
-        &result, Policy())
+        &result, Policy()))
         )
       {
         return result;
@@ -270,11 +270,11 @@ namespace boost
       RealType x_min = dist.x_min();
       RealType x_max = dist.x_max();
       RealType result;
-      if (false == arcsine_detail::check_dist(
+      if (!static_cast<bool>(arcsine_detail::check_dist(
         "boost::math::median(arcsine_distribution<%1%> const&, %1% )",
         x_min,
         x_max,
-        &result, Policy())
+        &result, Policy()))
         )
       {
         return result;
@@ -289,11 +289,11 @@ namespace boost
       RealType x_min = dist.x_min();
       RealType x_max = dist.x_max();
 
-      if (false == arcsine_detail::check_dist(
+      if (!static_cast<bool>(arcsine_detail::check_dist(
         "boost::math::skewness(arcsine_distribution<%1%> const&, %1% )",
         x_min,
         x_max,
-        &result, Policy())
+        &result, Policy()))
         )
       {
         return result;
@@ -308,11 +308,11 @@ namespace boost
       RealType x_min = dist.x_min();
       RealType x_max = dist.x_max();
 
-      if (false == arcsine_detail::check_dist(
+      if (!static_cast<bool>(arcsine_detail::check_dist(
         "boost::math::kurtosis_excess(arcsine_distribution<%1%> const&, %1% )",
         x_min,
         x_max,
-        &result, Policy())
+        &result, Policy()))
         )
       {
         return result;
@@ -328,11 +328,11 @@ namespace boost
       RealType x_min = dist.x_min();
       RealType x_max = dist.x_max();
 
-      if (false == arcsine_detail::check_dist(
+      if (!static_cast<bool>(arcsine_detail::check_dist(
         "boost::math::kurtosis(arcsine_distribution<%1%> const&, %1% )",
         x_min,
         x_max,
-        &result, Policy())
+        &result, Policy()))
         )
       {
         return result;
@@ -355,10 +355,10 @@ namespace boost
 
       // Argument checks:
       RealType result = 0; 
-      if (false == arcsine_detail::check_dist_and_x(
+      if (!static_cast<bool>(arcsine_detail::check_dist_and_x(
         function,
         lo, hi, x,
-        &result, Policy()))
+        &result, Policy())))
       {
         return result;
       }
@@ -379,10 +379,10 @@ namespace boost
 
       // Argument checks:
       RealType result = 0;
-      if (false == arcsine_detail::check_dist_and_x(
+      if (!static_cast<bool>(arcsine_detail::check_dist_and_x(
         function,
         x_min, x_max, x,
-        &result, Policy()))
+        &result, Policy())))
       {
         return result;
       }
@@ -413,10 +413,10 @@ namespace boost
 
       // Argument checks:
       RealType result = 0;
-      if (false == arcsine_detail::check_dist_and_x(
+      if (!static_cast<bool>(arcsine_detail::check_dist_and_x(
         function,
         x_min, x_max, x,
-        &result, Policy()))
+        &result, Policy())))
       {
         return result;
       }
@@ -456,10 +456,10 @@ namespace boost
       RealType result = 0; // of argument checks:
       RealType x_min = dist.x_min();
       RealType x_max = dist.x_max();
-      if (false == arcsine_detail::check_dist_and_prob(
+      if (!static_cast<bool>(arcsine_detail::check_dist_and_prob(
         function,
         x_min, x_max, p,
-        &result, Policy()))
+        &result, Policy())))
       {
         return result;
       }
@@ -497,12 +497,12 @@ namespace boost
       RealType result = 0;
       RealType x_min = dist.x_min();
       RealType x_max = dist.x_max();
-      if (false == arcsine_detail::check_dist_and_prob(
+      if (!static_cast<bool>(arcsine_detail::check_dist_and_prob(
         function,
         x_min,
         x_max,
         q,
-        &result, Policy()))
+        &result, Policy())))
       {
         return result;
       }

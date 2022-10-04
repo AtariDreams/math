@@ -20,10 +20,8 @@ namespace detail {
 template <typename Real>
 class discrete_legendre {
   public:
-    explicit discrete_legendre(std::size_t n, Real x) : m_n{n}, m_r{2}, m_x{x},
-                                                        m_qrm2{1}, m_qrm1{x},
-                                                        m_qrm2p{0}, m_qrm1p{1},
-                                                        m_qrm2pp{0}, m_qrm1pp{0}
+    explicit discrete_legendre(std::size_t n, Real x) : m_n{n}, m_x{x},
+                                                        m_qrm1{x}
     {
         using std::abs;
         BOOST_MATH_ASSERT_MSG(abs(m_x) <= 1, "Three term recurrence is stable only for |x| <=1.");
@@ -133,14 +131,14 @@ class discrete_legendre {
 
   private:
     std::size_t m_n;
-    std::size_t m_r;
+    std::size_t m_r{2};
     Real m_x;
-    Real m_qrm2;
+    Real m_qrm2{1};
     Real m_qrm1;
-    Real m_qrm2p;
-    Real m_qrm1p;
-    Real m_qrm2pp;
-    Real m_qrm1pp;
+    Real m_qrm2p{0};
+    Real m_qrm1p{1};
+    Real m_qrm2pp{0};
+    Real m_qrm1pp{0};
 };
 
 template <class Real>

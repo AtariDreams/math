@@ -112,8 +112,8 @@ namespace boost
     class geometric_distribution
     {
     public:
-      typedef RealType value_type;
-      typedef Policy policy_type;
+      using value_type = RealType;
+      using policy_type = Policy;
 
       geometric_distribution(RealType p) : m_p(p)
       { // Constructor stores success_fraction p.

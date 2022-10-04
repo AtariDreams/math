@@ -42,32 +42,32 @@ namespace boost {
          template <class T, bool = is_complex_type<T>::value>
          struct integer_scalar_type
          {
-            typedef int type;
+            using type = int;
          };
          template <class T>
          struct integer_scalar_type<T, true>
          {
-            typedef typename T::value_type type;
+            using type = typename T::value_type;
          };
          template <class T, bool = is_complex_type<T>::value>
          struct unsigned_scalar_type
          {
-            typedef unsigned type;
+            using type = unsigned int;
          };
          template <class T>
          struct unsigned_scalar_type<T, true>
          {
-            typedef typename T::value_type type;
+            using type = typename T::value_type;
          };
          template <class T, bool = is_complex_type<T>::value>
          struct scalar_type
          {
-            typedef T type;
+            using type = T;
          };
          template <class T>
          struct scalar_type<T, true>
          {
-            typedef typename T::value_type type;
+            using type = typename T::value_type;
          };
 
 

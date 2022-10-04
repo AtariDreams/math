@@ -30,9 +30,9 @@ namespace boost { namespace math { namespace detail {
       // as well as large ones.  See  http://functions.wolfram.com/07.31.10.0002.01
       //
       T a1, a2, z;
-      int k;
-      hypergeometric_2F0_cf(T a1_, T a2_, T z_) : a1(a1_), a2(a2_), z(z_), k(-2) {}
-      typedef std::pair<T, T> result_type;
+      int k{-2};
+      hypergeometric_2F0_cf(T a1_, T a2_, T z_) : a1(a1_), a2(a2_), z(z_), {}
+      using result_type = std::pair<T, T>;
 
       result_type operator()()
       {

@@ -34,7 +34,7 @@ inline constexpr Real sqrt_impl_1(Real x, Real s)
 template <typename Real>
 inline constexpr Real sqrt_impl(Real x)
 {
-    return sqrt_impl_1(x, x > 1 ? x : Real(1));
+    return sqrt_impl_1(x, x > 1 ? x : static_cast<Real>(1));
 }
 
 } // namespace detail

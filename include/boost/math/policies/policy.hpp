@@ -308,33 +308,33 @@ struct append_N<Seq, T, 0>
 template <bool f, bool d>
 struct default_args
 {
-   typedef promote_float<false> arg1;
-   typedef promote_double<false> arg2;
+   using arg1 = promote_float<false>;
+   using arg2 = promote_double<false>;
 };
 
 template <>
 struct default_args<false, false>
 {
-   typedef default_policy arg1;
-   typedef default_policy arg2;
+   using arg1 = default_policy;
+   using arg2 = default_policy;
 };
 
 template <>
 struct default_args<true, false>
 {
-   typedef promote_float<false> arg1;
-   typedef default_policy arg2;
+   using arg1 = promote_float<false>;
+   using arg2 = default_policy;
 };
 
 template <>
 struct default_args<false, true>
 {
-   typedef promote_double<false> arg1;
-   typedef default_policy arg2;
+   using arg1 = promote_double<false>;
+   using arg2 = default_policy;
 };
 
-typedef default_args<BOOST_MATH_PROMOTE_FLOAT_POLICY, BOOST_MATH_PROMOTE_DOUBLE_POLICY>::arg1 forwarding_arg1;
-typedef default_args<BOOST_MATH_PROMOTE_FLOAT_POLICY, BOOST_MATH_PROMOTE_DOUBLE_POLICY>::arg2 forwarding_arg2;
+using forwarding_arg1 = default_args<true, true>::arg1;
+using forwarding_arg2 = default_args<true, true>::arg2;
 
 } // detail
 
@@ -726,7 +726,7 @@ inline constexpr typename normalise<policy<>, A1, A2, A3, A4, A5, A6, A7, A8, A9
 template <class Real, class Policy>
 struct evaluation
 {
-   typedef Real type;
+   using type = Real;
 };
 
 template <class Policy>
@@ -958,14 +958,14 @@ struct method_error_check
 template <class Policy>
 struct is_noexcept_error_policy
 {
-   typedef typename Policy::domain_error_type               t1;
-   typedef typename Policy::pole_error_type                 t2;
-   typedef typename Policy::overflow_error_type             t3;
-   typedef typename Policy::underflow_error_type            t4;
-   typedef typename Policy::denorm_error_type               t5;
-   typedef typename Policy::evaluation_error_type           t6;
-   typedef typename Policy::rounding_error_type             t7;
-   typedef typename Policy::indeterminate_result_error_type t8;
+   using t1 = typename Policy::domain_error_type;
+   using t2 = typename Policy::pole_error_type;
+   using t3 = typename Policy::overflow_error_type;
+   using t4 = typename Policy::underflow_error_type;
+   using t5 = typename Policy::denorm_error_type;
+   using t6 = typename Policy::evaluation_error_type;
+   using t7 = typename Policy::rounding_error_type;
+   using t8 = typename Policy::indeterminate_result_error_type;
 
    static constexpr bool value =
       ((t1::value != throw_on_error) && (t1::value != user_error)

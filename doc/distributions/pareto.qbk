@@ -15,7 +15,7 @@
    class pareto_distribution
    {
    public:
-      typedef RealType value_type;
+      using value_type = RealType;
       // Constructor:
       pareto_distribution(RealType scale = 1, RealType shape = 1)
       // Accessors:

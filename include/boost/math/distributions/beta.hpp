@@ -153,8 +153,8 @@ namespace boost
     class beta_distribution
     {
     public:
-      typedef RealType value_type;
-      typedef Policy policy_type;
+      using value_type = RealType;
+      using policy_type = Policy;
 
       beta_distribution(RealType l_alpha = 1, RealType l_beta = 1) : m_alpha(l_alpha), m_beta(l_beta)
       {
@@ -206,11 +206,9 @@ namespace boost
       {
         static const char* function = "boost::math::beta_distribution<%1%>::find_beta";
         RealType result = 0; // of error checks.
-        if(false ==
-            (
-              beta_detail::check_mean(function, mean, &result, Policy())
+        if(!static_cast<bool>(beta_detail::check_mean(function, mean, &result, Policy())
               &&
-              beta_detail::check_variance(function, variance, &result, Policy())
+              beta_detail::check_variance(function, variance, &result, Policy()))
             )
           )
         {

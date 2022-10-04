@@ -148,8 +148,8 @@ template <class RealType = double, class Policy = policies::policy<> >
 class cauchy_distribution
 {
 public:
-   typedef RealType value_type;
-   typedef Policy policy_type;
+   using value_type = RealType;
+   using policy_type = Policy;
 
    cauchy_distribution(RealType l_location = 0, RealType l_scale = 1)
       : m_a(l_location), m_hg(l_scale)

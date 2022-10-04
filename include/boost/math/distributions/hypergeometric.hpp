@@ -23,8 +23,8 @@ namespace boost { namespace math {
    class hypergeometric_distribution
    {
    public:
-      typedef RealType value_type;
-      typedef Policy policy_type;
+      using value_type = RealType;
+      using policy_type = Policy;
 
       hypergeometric_distribution(unsigned r, unsigned n, unsigned N) // Constructor. r=defective/failures/success, n=trials/draws, N=total population.
          : m_n(n), m_N(N), m_r(r)

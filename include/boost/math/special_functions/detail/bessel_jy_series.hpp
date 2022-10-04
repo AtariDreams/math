@@ -75,10 +75,10 @@ inline T bessel_j_small_z_series(T v, T x, const Policy& pol)
 template <class T, class Policy>
 struct bessel_y_small_z_series_term_a
 {
-   typedef T result_type;
+   using result_type = T;
 
    bessel_y_small_z_series_term_a(T v_, T x)
-      : N(0), v(v_)
+      : , v(v_)
    {
       BOOST_MATH_STD_USING
       mult = x / 2;
@@ -94,7 +94,7 @@ struct bessel_y_small_z_series_term_a
       return r;
    }
 private:
-   unsigned N;
+   unsigned N{0};
    T v;
    T mult;
    T term;

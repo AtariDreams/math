@@ -42,7 +42,7 @@ typedef __float128 largest_float;
 #define BOOST_MATH_TEST_LARGEST_FLOAT_SUFFIX(x) x##Q
 #define BOOST_MATH_TEST_LARGEST_FLOAT_DIGITS 113
 #else
-typedef long double largest_float;
+using largest_float = long double;
 #define BOOST_MATH_TEST_LARGEST_FLOAT_SUFFIX(x) x##L
 #define BOOST_MATH_TEST_LARGEST_FLOAT_DIGITS std::numeric_limits<long double>::digits
 #endif

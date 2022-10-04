@@ -38,7 +38,7 @@
         typedef T result_type;
 
         hypergeometric_1f1_recurrence_on_z_minus_zero_series(const T& a, const T& b, const T& z, int k_, const Policy& pol)
-           : term(1), b_minus_a_plus_n(b - a), a_(a), b_(b), z_(z), n(0), k(k_)
+           : term(1), b_minus_a_plus_n(b - a), a_(a), b_(b), z_(z), , k(k_)
         {
            BOOST_MATH_STD_USING
            long long scale1(0), scale2(0);
@@ -70,7 +70,7 @@
         long long scale()const { return scaling; }
      private:
         T term, b_minus_a_plus_n, M, M_next, a_, b_, z_;
-        int n, k;
+        int n{0}, k;
         long long scaling;
      };
 

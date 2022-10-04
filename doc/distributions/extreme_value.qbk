@@ -12,7 +12,7 @@
    class extreme_value_distribution
    {
    public:
-      typedef RealType value_type;
+      using value_type = RealType;
 
       extreme_value_distribution(RealType location = 0, RealType scale = 1);
 

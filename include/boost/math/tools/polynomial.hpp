@@ -279,8 +279,8 @@ class polynomial
 {
 public:
    // typedefs:
-   typedef typename std::vector<T>::value_type value_type;
-   typedef typename std::vector<T>::size_type size_type;
+   using value_type = typename std::vector<T>::value_type;
+   using size_type = typename std::vector<T>::size_type;
 
    // construct:
    polynomial()= default;

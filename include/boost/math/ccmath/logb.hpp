@@ -39,7 +39,7 @@ inline constexpr Real logb(Real arg) noexcept
 {
     if(BOOST_MATH_IS_CONSTANT_EVALUATED(arg))
     {
-        return boost::math::ccmath::abs(arg) == Real(0) ? -std::numeric_limits<Real>::infinity() :
+        return boost::math::ccmath::abs(arg) == static_cast<Real>(0) ? -std::numeric_limits<Real>::infinity() :
                boost::math::ccmath::isinf(arg) ? std::numeric_limits<Real>::infinity() :
                boost::math::ccmath::isnan(arg) ? std::numeric_limits<Real>::quiet_NaN() :
                boost::math::ccmath::detail::logb_impl(arg);

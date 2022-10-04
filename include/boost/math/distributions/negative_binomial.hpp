@@ -131,8 +131,8 @@ namespace boost
     class negative_binomial_distribution
     {
     public:
-      typedef RealType value_type;
-      typedef Policy policy_type;
+      using value_type = RealType;
+      using policy_type = Policy;
 
       negative_binomial_distribution(RealType r, RealType p) : m_r(r), m_p(p)
       { // Constructor.

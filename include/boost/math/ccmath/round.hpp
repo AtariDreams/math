@@ -26,7 +26,7 @@ inline constexpr T round_impl(T arg) noexcept
 {
     T iptr = 0;
     const T x = boost::math::ccmath::modf(arg, &iptr);
-    constexpr T half = T(1)/2;
+    constexpr T half = static_cast<T>(1)/2;
 
     if(x >= half && iptr > 0)
     {
@@ -71,7 +71,7 @@ inline constexpr Real round(Real arg) noexcept
 {
     if(BOOST_MATH_IS_CONSTANT_EVALUATED(arg))
     {
-        return boost::math::ccmath::abs(arg) == Real(0) ? arg :
+        return boost::math::ccmath::abs(arg) == static_cast<Real>(0) ? arg :
                boost::math::ccmath::isinf(arg) ? arg :
                boost::math::ccmath::isnan(arg) ? arg :
                boost::math::ccmath::detail::round_impl(arg);
@@ -106,7 +106,7 @@ inline constexpr long lround(Real arg)
 {
     if(BOOST_MATH_IS_CONSTANT_EVALUATED(arg))
     {
-        return boost::math::ccmath::abs(arg) == Real(0) ? 0l :
+        return boost::math::ccmath::abs(arg) == static_cast<Real>(0) ? 0l :
                boost::math::ccmath::isinf(arg) ? 0l :
                boost::math::ccmath::isnan(arg) ? 0l :
                boost::math::ccmath::detail::int_round_impl<long>(arg);
@@ -141,7 +141,7 @@ inline constexpr long long llround(Real arg)
 {
     if(BOOST_MATH_IS_CONSTANT_EVALUATED(arg))
     {
-        return boost::math::ccmath::abs(arg) == Real(0) ? 0ll :
+        return boost::math::ccmath::abs(arg) == static_cast<Real>(0) ? 0ll :
                boost::math::ccmath::isinf(arg) ? 0ll :
                boost::math::ccmath::isnan(arg) ? 0ll :
                boost::math::ccmath::detail::int_round_impl<long long>(arg);

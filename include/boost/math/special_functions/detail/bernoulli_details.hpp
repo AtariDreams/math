@@ -172,7 +172,7 @@ struct fixed_vector : private std::allocator<T>
    using size_type = unsigned;
    using iterator = T*;
    using const_iterator = const T*;
-   fixed_vector() : m_used(0)
+   fixed_vector() :
    {
       std::size_t overflow_limit = 5 + b2n_overflow_limit<T, policies::policy<> >();
       m_capacity = static_cast<unsigned>((std::min)(overflow_limit, static_cast<std::size_t>(100000u)));
@@ -438,7 +438,7 @@ public:
             }
             if(start + n >= bn.size())
             {
-               std::size_t new_size = (std::min)((std::max)((std::max)(std::size_t(start + n), std::size_t(bn.size() + 20)), std::size_t(50)), std::size_t(bn.capacity()));
+               std::size_t new_size = (std::min)((std::max)((std::max)(static_cast<std::size_t>(start + n), std::size_t(bn.size() + 20)), static_cast<std::size_t>(50)), std::size_t(bn.capacity()));
                if (!tangent_numbers_series(new_size))
                   return std::fill_n(out, n, policies::raise_evaluation_error<T>("boost::math::bernoulli_b2n<%1%>(std::size_t)", "Unable to allocate Bernoulli numbers cache for %1% values", T(new_size), pol));
             }

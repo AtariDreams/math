@@ -48,8 +48,8 @@ template <class RealType = double, class Policy = policies::policy<> >
 class inverse_chi_squared_distribution
 {
 public:
-   typedef RealType value_type;
-   typedef Policy policy_type;
+   using value_type = RealType;
+   using policy_type = Policy;
 
    inverse_chi_squared_distribution(RealType df, RealType l_scale) : m_df(df), m_scale (l_scale)
    {

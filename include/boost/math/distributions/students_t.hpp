@@ -32,8 +32,8 @@ template <class RealType = double, class Policy = policies::policy<> >
 class students_t_distribution
 {
 public:
-   typedef RealType value_type;
-   typedef Policy policy_type;
+   using value_type = RealType;
+   using policy_type = Policy;
 
    students_t_distribution(RealType df) : df_(df)
    { // Constructor.

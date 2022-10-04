@@ -82,8 +82,8 @@ namespace boost{
          // Therefore use the range of "long double" as our limits since results outside
          // that range may have been truncated to 0 or INF:
          //
-         double min_val = (std::max)((double)tools::min_value<long double>(), tools::min_value<double>());
-         double max_val = (std::min)((double)tools::max_value<long double>(), tools::max_value<double>());
+         double min_val = (std::max)(static_cast<double>(tools::min_value<long double>()), tools::min_value<double>());
+         double max_val = (std::min)(static_cast<double>(tools::max_value<long double>()), tools::max_value<double>());
 
          // Screen out NaN's first, if either value is a NaN then the distance is "infinite":
          if((boost::math::isnan)(a) || (boost::math::isnan)(b))

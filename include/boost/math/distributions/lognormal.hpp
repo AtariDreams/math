@@ -45,8 +45,8 @@ template <class RealType = double, class Policy = policies::policy<> >
 class lognormal_distribution
 {
 public:
-   typedef RealType value_type;
-   typedef Policy policy_type;
+   using value_type = RealType;
+   using policy_type = Policy;
 
    lognormal_distribution(RealType l_location = 0, RealType l_scale = 1)
       : m_location(l_location), m_scale(l_scale)

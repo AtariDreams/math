@@ -666,8 +666,8 @@ namespace boost
       class non_central_beta_distribution
       {
       public:
-         typedef RealType value_type;
-         typedef Policy policy_type;
+         using value_type = RealType;
+         using policy_type = Policy;
 
          non_central_beta_distribution(RealType a_, RealType b_, RealType lambda) : a(a_), b(b_), ncp(lambda)
          {

@@ -385,9 +385,9 @@ inline OutputIterator airy_ai_zero(
 {
    typedef T result_type;
 
-   static_assert(    false == std::numeric_limits<T>::is_specialized
-                           || (   true  == std::numeric_limits<T>::is_specialized
-                               && false == std::numeric_limits<T>::is_integer),
+   static_assert(    !static_cast<bool>(std::numeric_limits<T>::is_specialized)
+                           || (   static_cast<bool>(std::numeric_limits<T>::is_specialized)
+                               && !static_cast<bool>(std::numeric_limits<T>::is_integer)),
                            "Airy value type must be a floating-point type.");
 
    for(unsigned i = 0; i < number_of_zeros; ++i)

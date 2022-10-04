@@ -150,8 +150,8 @@ namespace boost{ namespace math
   class triangular_distribution
   {
   public:
-    typedef RealType value_type;
-    typedef Policy policy_type;
+    using value_type = RealType;
+    using policy_type = Policy;
 
     triangular_distribution(RealType l_lower = -1, RealType l_mode = 0, RealType l_upper = 1)
       : m_lower(l_lower), m_mode(l_mode), m_upper(l_upper) // Constructor.

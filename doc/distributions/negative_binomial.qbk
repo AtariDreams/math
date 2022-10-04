@@ -14,7 +14,7 @@
    class negative_binomial_distribution
    {
    public:
-      typedef RealType value_type;
+      using value_type = RealType;
       typedef Policy   policy_type;
       // Constructor from successes and success_fraction:
       negative_binomial_distribution(RealType r, RealType p);

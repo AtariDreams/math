@@ -22,8 +22,8 @@ template <class RealType = double, class Policy = policies::policy<> >
 class fisher_f_distribution
 {
 public:
-   typedef RealType value_type;
-   typedef Policy policy_type;
+   using value_type = RealType;
+   using policy_type = Policy;
 
    fisher_f_distribution(const RealType& i, const RealType& j) : m_df1(i), m_df2(j)
    {

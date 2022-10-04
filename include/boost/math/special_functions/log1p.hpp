@@ -45,10 +45,10 @@ namespace detail
   template <class T>
   struct log1p_series
   {
-     typedef T result_type;
+     using result_type = T;
 
      log1p_series(T x)
-        : k(0), m_mult(-x), m_prod(-1){}
+        : , m_mult(-x), m_prod(-1){}
 
      T operator()()
      {
@@ -62,7 +62,7 @@ namespace detail
      }
 
   private:
-     int k;
+     int k{0};
      const T m_mult;
      T m_prod;
      log1p_series(const log1p_series&);

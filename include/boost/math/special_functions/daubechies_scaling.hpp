@@ -52,7 +52,7 @@ std::vector<Real> daubechies_scaling_dyadic_grid(int64_t j_max)
 
     for (int64_t j = 1; j <= j_max; ++j)
     {
-        int64_t k_max = v.size()/(int64_t(1) << (j_max-j));
+        int64_t k_max = v.size()/(static_cast<int64_t>(1) << (j_max-j));
         for (int64_t k = 1; k < k_max;  k += 2)
         {
             // Where this value will go:
@@ -65,7 +65,7 @@ std::vector<Real> daubechies_scaling_dyadic_grid(int64_t j_max)
             Real term = 0;
             for (int64_t l = 0; l < static_cast<int64_t>(c.size()); ++l)
             {
-                int64_t idx = k*(int64_t(1) << (j_max - j + 1)) - l*(int64_t(1) << j_max);
+                int64_t idx = k*(static_cast<int64_t>(1) << (j_max - j + 1)) - l*(static_cast<int64_t>(1) << j_max);
                 if (idx < 0)
                 {
                     break;
@@ -93,9 +93,9 @@ class matched_holder {
 public:
     using Real = typename RandomAccessContainer::value_type;
 
-    matched_holder(RandomAccessContainer && y, RandomAccessContainer && dydx, int grid_refinements, Real x0) : x0_{x0}, y_{std::move(y)}, dy_{std::move(dydx)}
+    matched_holder(RandomAccessContainer && y, RandomAccessContainer && dydx, int grid_refinements, Real x0) : x0_{x0}, inv_h_(1 << grid_refinements), y_{std::move(y)}, dy_{std::move(dydx)}
     {
-        inv_h_ = (1 << grid_refinements);
+
         Real h = 1/inv_h_;
         for (auto & dy : dy_)
         {
@@ -224,9 +224,9 @@ public:
     using Point = typename RandomAccessContainer::value_type;
     using Real = typename Point::value_type;
 
-    linear_interpolation_aos(RandomAccessContainer && data, int grid_refinements, Real x0) : x0_{x0}, data_{std::move(data)}
+    linear_interpolation_aos(RandomAccessContainer && data, int grid_refinements, Real x0) : x0_{x0}, s_(Real(1uLL << grid_refinements)), data_{std::move(data)}
     {
-        s_ = Real(1uLL << grid_refinements);
+
     }
 
     inline Real operator()(Real x) const
@@ -266,7 +266,7 @@ private:
 template <class T>
 struct daubechies_eval_type
 {
-   typedef T type;
+   using type = T;
 
    static const std::vector<T>& vector_cast(const std::vector<T>& v) { return v; }
 
@@ -274,7 +274,7 @@ struct daubechies_eval_type
 template <>
 struct daubechies_eval_type<float>
 {
-   typedef double type;
+   using type = double;
 
    inline static std::vector<float> vector_cast(const std::vector<double>& v)
    {
@@ -314,7 +314,7 @@ class daubechies_scaling {
    //
    // Some type manipulation so we know the type of the interpolator, and the vector type it requires:
    //
-   typedef std::vector<std::array<Real, p < 6 ? 2 : p < 10 ? 3 : 4>> vector_type;
+   using vector_type = std::vector<std::array<Real, p < 6 ? 2 : p < 10 ? 3 : 4>>;
    //
    // List our interpolators:
    //

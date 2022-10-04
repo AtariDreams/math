@@ -286,7 +286,7 @@ V evaluate_rational(const T* num, const U* denom, const V& z_, std::size_t count
    {
       s1 = static_cast<V>(num[count-1]);
       s2 = static_cast<V>(denom[count-1]);
-      for(int i = (int)count - 2; i >= 0; --i)
+      for(int i = static_cast<int>(count) - 2; i >= 0; --i)
       {
          s1 *= z;
          s2 *= z;

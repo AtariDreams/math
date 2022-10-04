@@ -12,7 +12,7 @@
    class exponential_distribution
    {
    public:
-      typedef RealType value_type;
+      using value_type = RealType;
       typedef Policy   policy_type;
 
       exponential_distribution(RealType lambda = 1);

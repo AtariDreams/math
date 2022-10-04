@@ -354,8 +354,8 @@ T expint_1_rational(const T& z, const std::integral_constant<int, 113>&)
 template <class T>
 struct expint_fraction
 {
-   typedef std::pair<T,T> result_type;
-   expint_fraction(unsigned n_, T z_) : b(n_ + z_), i(-1), n(n_){}
+   using result_type = std::pair<T, T>;
+   expint_fraction(unsigned n_, T z_) : b(n_ + z_), , n(n_){}
    std::pair<T,T> operator()()
    {
       std::pair<T,T> result = std::make_pair(-static_cast<T>((i+1) * (n+i)), b);
@@ -365,7 +365,7 @@ struct expint_fraction
    }
 private:
    T b;
-   int i;
+   int i{-1};
    unsigned n;
 };
 
@@ -391,7 +391,7 @@ inline T expint_as_fraction(unsigned n, T z, const Policy& pol)
 template <class T>
 struct expint_series
 {
-   typedef T result_type;
+   using result_type = T;
    expint_series(unsigned k_, T z_, T x_k_, T denom_, T fact_)
       : k(k_), z(z_), x_k(x_k_), denom(denom_), fact(fact_){}
    T operator()()
@@ -487,15 +487,15 @@ T expint_imp(unsigned n, T z, const Policy& pol, const Tag& tag)
 template <class T>
 struct expint_i_series
 {
-   typedef T result_type;
-   expint_i_series(T z_) : k(0), z_k(1), z(z_){}
+   using result_type = T;
+   expint_i_series(T z_) : , z_k(1), z(z_){}
    T operator()()
    {
       z_k *= z / ++k;
       return z_k / k;
    }
 private:
-   unsigned k;
+   unsigned k{0};
    T z_k;
    T z;
 };

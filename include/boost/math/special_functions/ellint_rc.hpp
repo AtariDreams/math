@@ -50,7 +50,8 @@ T ellint_rc_imp(T x, T y, const Policy& pol)
     }
 
     // for y < 0, the integral is singular, return Cauchy principal value
-    T prefix, result;
+    T prefix;
+    T result;
     if(y < 0)
     {
         prefix = sqrt(x / (x - y));

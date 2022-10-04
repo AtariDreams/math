@@ -43,10 +43,10 @@ namespace detail
   template <class T>
   struct expm1_series
   {
-     typedef T result_type;
+     using result_type = T;
 
      expm1_series(T x)
-        : k(0), m_x(x), m_term(1) {}
+        : , m_x(x), m_term(1) {}
 
      T operator()()
      {
@@ -62,7 +62,7 @@ namespace detail
      }
 
   private:
-     int k;
+     int k{0};
      const T m_x;
      T m_term;
      expm1_series(const expm1_series&) = delete;

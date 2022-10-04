@@ -16,8 +16,8 @@ namespace boost{ namespace math{ namespace detail{
 template <class Dist>
 struct distribution_quantile_finder
 {
-   typedef typename Dist::value_type value_type;
-   typedef typename Dist::policy_type policy_type;
+   using value_type = typename Dist::value_type;
+   using policy_type = typename Dist::policy_type;
 
    distribution_quantile_finder(const Dist d, value_type p, bool c)
       : dist(d), target(p), comp(c) {}

@@ -28,9 +28,9 @@
      {
         enum{ cache_size = 64 };
 
-        typedef T result_type;
+        using result_type = T;
         hypergeometric_1F1_igamma_series(const T& alpha, const T& delta, const T& x, const Policy& pol)
-           : delta_poch(-delta), alpha_poch(alpha), x(x), k(0), cache_offset(0), pol(pol)
+           : delta_poch(-delta), alpha_poch(alpha), x(x), , , pol(pol)
         {
            BOOST_MATH_STD_USING
            T log_term = log(x) * -alpha;
@@ -63,9 +63,9 @@
         }
         T delta_poch, alpha_poch, x, term;
         T gamma_cache[cache_size];
-        int k;
+        int k{0};
         long long log_scaling;
-        int cache_offset;
+        int cache_offset{0};
         Policy pol;
      };
 

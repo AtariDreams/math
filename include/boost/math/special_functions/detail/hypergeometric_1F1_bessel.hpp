@@ -64,7 +64,7 @@
         hypergeometric_1F1_AS_13_3_7_tricomi_series(const T& a, const T& b, const T& z, const Policy& pol_)
            : A_minus_2(1), A_minus_1(0), A(b / 2), mult(z / 2), term(1), b_minus_1_plus_n(b - 1),
             bessel_arg((b / 2 - a) * z),
-           two_a_minus_b(2 * a - b), pol(pol_), n(2)
+           two_a_minus_b(2 * a - b), pol(pol_),
         {
            BOOST_MATH_STD_USING
            term /= pow(fabs(bessel_arg), b_minus_1_plus_n / 2);
@@ -145,7 +145,7 @@
         T A_minus_2, A_minus_1, A, mult, term, b_minus_1_plus_n, bessel_arg, two_a_minus_b;
         std::array<T, cache_size> bessel_cache;
         const Policy& pol;
-        int n, cache_offset;
+        int n{2}, cache_offset;
         long long log_scale;
 
         hypergeometric_1F1_AS_13_3_7_tricomi_series operator=(const hypergeometric_1F1_AS_13_3_7_tricomi_series&) = delete;
@@ -430,7 +430,7 @@
      {
         typedef T result_type;
 
-        cyl_bessel_i_large_x_sum(const T& v, const T& x) : v(v), z(x), term(1), k(0) {}
+        cyl_bessel_i_large_x_sum(const T& v, const T& x) : v(v), z(x), term(1), {}
 
         T operator()()
         {
@@ -440,7 +440,7 @@
            return result;
         }
         T v, z, term;
-        int k;
+        int k{0};
      };
 
      template <class T, class Policy>

@@ -27,10 +27,10 @@
   template <class T>
   struct hypergeometric_pFq_generic_series_term<T, 0u, 1u>
   {
-    typedef T result_type;
+    using result_type = T;
 
     hypergeometric_pFq_generic_series_term(const T& b, const T& z)
-       : n(0), term(1), b(b), z(z)
+       : , term(1), b(b), z(z)
     {
     }
 
@@ -44,7 +44,7 @@
     }
 
   private:
-    unsigned n;
+    unsigned n{0};
     T term;
     const T b, z;
   };
@@ -53,10 +53,10 @@
   template <class T>
   struct hypergeometric_pFq_generic_series_term<T, 1u, 0u>
   {
-    typedef T result_type;
+    using result_type = T;
 
     hypergeometric_pFq_generic_series_term(const T& a, const T& z)
-       : n(0), term(1), a(a), z(z)
+       : , term(1), a(a), z(z)
     {
     }
 
@@ -70,7 +70,7 @@
     }
 
   private:
-    unsigned n;
+    unsigned n{0};
     T term;
     const T a, z;
   };
@@ -79,10 +79,10 @@
   template <class T>
   struct hypergeometric_pFq_generic_series_term<T, 1u, 1u>
   {
-    typedef T result_type;
+    using result_type = T;
 
     hypergeometric_pFq_generic_series_term(const T& a, const T& b, const T& z)
-       : n(0), term(1), a(a), b(b), z(z)
+       : , term(1), a(a), b(b), z(z)
     {
     }
 
@@ -96,7 +96,7 @@
     }
 
   private:
-    unsigned n;
+    unsigned n{0};
     T term;
     const T a, b, z;
   };
@@ -105,10 +105,10 @@
   template <class T>
   struct hypergeometric_pFq_generic_series_term<T, 1u, 2u>
   {
-    typedef T result_type;
+    using result_type = T;
 
     hypergeometric_pFq_generic_series_term(const T& a, const T& b1, const T& b2, const T& z)
-       : n(0), term(1), a(a), b1(b1), b2(b2), z(z)
+       : , term(1), a(a), b1(b1), b2(b2), z(z)
     {
     }
 
@@ -122,7 +122,7 @@
     }
 
   private:
-    unsigned n;
+    unsigned n{0};
     T term;
     const T a, b1, b2, z;
   };
@@ -131,10 +131,10 @@
   template <class T>
   struct hypergeometric_pFq_generic_series_term<T, 2u, 0u>
   {
-    typedef T result_type;
+    using result_type = T;
 
     hypergeometric_pFq_generic_series_term(const T& a1, const T& a2, const T& z)
-       : n(0), term(1), a1(a1), a2(a2), z(z)
+       : , term(1), a1(a1), a2(a2), z(z)
     {
     }
 
@@ -148,7 +148,7 @@
     }
 
   private:
-    unsigned n;
+    unsigned n{0};
     T term;
     const T a1, a2, z;
   };
@@ -157,10 +157,10 @@
   template <class T>
   struct hypergeometric_pFq_generic_series_term<T, 2u, 1u>
   {
-    typedef T result_type;
+    using result_type = T;
 
     hypergeometric_pFq_generic_series_term(const T& a1, const T& a2, const T& b, const T& z)
-       : n(0), term(1), a1(a1), a2(a2), b(b), z(z)
+       : , term(1), a1(a1), a2(a2), b(b), z(z)
     {
     }
 
@@ -174,7 +174,7 @@
     }
 
   private:
-    unsigned n;
+    unsigned n{0};
     T term;
     const T a1, a2, b, z;
   };

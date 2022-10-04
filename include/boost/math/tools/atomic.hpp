@@ -17,10 +17,10 @@ namespace boost {
    namespace math {
       namespace detail {
 #if (ATOMIC_INT_LOCK_FREE == 2) && !defined(BOOST_MATH_NO_ATOMIC_INT)
-         typedef std::atomic<int> atomic_counter_type;
-         typedef std::atomic<unsigned> atomic_unsigned_type;
-         typedef int atomic_integer_type;
-         typedef unsigned atomic_unsigned_integer_type;
+         using atomic_counter_type = std::atomic<int>;
+         using atomic_unsigned_type = std::atomic<unsigned int>;
+         using atomic_integer_type = int;
+         using atomic_unsigned_integer_type = unsigned int;
 #elif (ATOMIC_SHORT_LOCK_FREE == 2) && !defined(BOOST_MATH_NO_ATOMIC_INT)
          typedef std::atomic<short> atomic_counter_type;
          typedef std::atomic<unsigned short> atomic_unsigned_type;

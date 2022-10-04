@@ -92,24 +92,24 @@ inline BOOST_MATH_CONSTEXPR_TABLE_FUNCTION T unchecked_bernoulli_imp(std::size_t
    static const std::array<std::int64_t, 1 + max_bernoulli_b2n<T>::value> numerators =
 #endif
    {{
-      std::int64_t(            +1LL),
-      std::int64_t(            +1LL),
-      std::int64_t(            -1LL),
-      std::int64_t(            +1LL),
-      std::int64_t(            -1LL),
-      std::int64_t(            +5LL),
-      std::int64_t(          -691LL),
-      std::int64_t(            +7LL),
-      std::int64_t(         -3617LL),
-      std::int64_t(        +43867LL),
-      std::int64_t(       -174611LL),
-      std::int64_t(       +854513LL),
-      std::int64_t(    -236364091LL),
-      std::int64_t(      +8553103LL),
-      std::int64_t(  -23749461029LL),
-      std::int64_t(+8615841276005LL),
-      std::int64_t(-7709321041217LL),
-      std::int64_t(+2577687858367LL)
+      static_cast<std::int64_t>(            +1LL),
+      static_cast<std::int64_t>(            +1LL),
+      static_cast<std::int64_t>(            -1LL),
+      static_cast<std::int64_t>(            +1LL),
+      static_cast<std::int64_t>(            -1LL),
+      static_cast<std::int64_t>(            +5LL),
+      static_cast<std::int64_t>(          -691LL),
+      static_cast<std::int64_t>(            +7LL),
+      static_cast<std::int64_t>(         -3617LL),
+      static_cast<std::int64_t>(        +43867LL),
+      static_cast<std::int64_t>(       -174611LL),
+      static_cast<std::int64_t>(       +854513LL),
+      static_cast<std::int64_t>(    -236364091LL),
+      static_cast<std::int64_t>(      +8553103LL),
+      static_cast<std::int64_t>(  -23749461029LL),
+      static_cast<std::int64_t>(+8615841276005LL),
+      static_cast<std::int64_t>(-7709321041217LL),
+      static_cast<std::int64_t>(+2577687858367LL)
    }};
 
 #ifdef BOOST_MATH_HAVE_CONSTEXPR_TABLES
@@ -118,24 +118,24 @@ inline BOOST_MATH_CONSTEXPR_TABLE_FUNCTION T unchecked_bernoulli_imp(std::size_t
    static const std::array<std::int64_t, 1 + max_bernoulli_b2n<T>::value> denominators =
 #endif
    {{
-      std::int64_t(      1LL),
-      std::int64_t(      6LL),
-      std::int64_t(     30LL),
-      std::int64_t(     42LL),
-      std::int64_t(     30LL),
-      std::int64_t(     66LL),
-      std::int64_t(   2730LL),
-      std::int64_t(      6LL),
-      std::int64_t(    510LL),
-      std::int64_t(    798LL),
-      std::int64_t(    330LL),
-      std::int64_t(    138LL),
-      std::int64_t(   2730LL),
-      std::int64_t(      6LL),
-      std::int64_t(    870LL),
-      std::int64_t(  14322LL),
-      std::int64_t(    510LL),
-      std::int64_t(      6LL)
+      static_cast<std::int64_t>(      1LL),
+      static_cast<std::int64_t>(      6LL),
+      static_cast<std::int64_t>(     30LL),
+      static_cast<std::int64_t>(     42LL),
+      static_cast<std::int64_t>(     30LL),
+      static_cast<std::int64_t>(     66LL),
+      static_cast<std::int64_t>(   2730LL),
+      static_cast<std::int64_t>(      6LL),
+      static_cast<std::int64_t>(    510LL),
+      static_cast<std::int64_t>(    798LL),
+      static_cast<std::int64_t>(    330LL),
+      static_cast<std::int64_t>(    138LL),
+      static_cast<std::int64_t>(   2730LL),
+      static_cast<std::int64_t>(      6LL),
+      static_cast<std::int64_t>(    870LL),
+      static_cast<std::int64_t>(  14322LL),
+      static_cast<std::int64_t>(    510LL),
+      static_cast<std::int64_t>(      6LL)
    }};
    return T(numerators[n]) / denominators[n];
 }
@@ -674,34 +674,34 @@ inline T unchecked_bernoulli_imp(std::size_t n, const std::integral_constant<int
    //
    static const std::array<std::int32_t, 1 + max_bernoulli_b2n<T>::value> numerators =
    {{
-      std::int32_t(            +1LL),
-      std::int32_t(            +1LL),
-      std::int32_t(            -1LL),
-      std::int32_t(            +1LL),
-      std::int32_t(            -1LL),
-      std::int32_t(            +5LL),
-      std::int32_t(          -691LL),
-      std::int32_t(            +7LL),
-      std::int32_t(         -3617LL),
-      std::int32_t(        +43867LL),
-      std::int32_t(       -174611LL),
-      std::int32_t(       +854513LL),
+      static_cast<std::int32_t>(            +1LL),
+      static_cast<std::int32_t>(            +1LL),
+      static_cast<std::int32_t>(            -1LL),
+      static_cast<std::int32_t>(            +1LL),
+      static_cast<std::int32_t>(            -1LL),
+      static_cast<std::int32_t>(            +5LL),
+      static_cast<std::int32_t>(          -691LL),
+      static_cast<std::int32_t>(            +7LL),
+      static_cast<std::int32_t>(         -3617LL),
+      static_cast<std::int32_t>(        +43867LL),
+      static_cast<std::int32_t>(       -174611LL),
+      static_cast<std::int32_t>(       +854513LL),
    }};
 
    static const std::array<std::int32_t, 1 + max_bernoulli_b2n<T>::value> denominators =
    {{
-      std::int32_t(      1LL),
-      std::int32_t(      6LL),
-      std::int32_t(     30LL),
-      std::int32_t(     42LL),
-      std::int32_t(     30LL),
-      std::int32_t(     66LL),
-      std::int32_t(   2730LL),
-      std::int32_t(      6LL),
-      std::int32_t(    510LL),
-      std::int32_t(    798LL),
-      std::int32_t(    330LL),
-      std::int32_t(    138LL),
+      static_cast<std::int32_t>(      1LL),
+      static_cast<std::int32_t>(      6LL),
+      static_cast<std::int32_t>(     30LL),
+      static_cast<std::int32_t>(     42LL),
+      static_cast<std::int32_t>(     30LL),
+      static_cast<std::int32_t>(     66LL),
+      static_cast<std::int32_t>(   2730LL),
+      static_cast<std::int32_t>(      6LL),
+      static_cast<std::int32_t>(    510LL),
+      static_cast<std::int32_t>(    798LL),
+      static_cast<std::int32_t>(    330LL),
+      static_cast<std::int32_t>(    138LL),
    }};
    return T(numerators[n]) / T(denominators[n]);
 }

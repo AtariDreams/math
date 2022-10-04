@@ -637,9 +637,9 @@ namespace boost
 
    namespace detail{
 
-      typedef std::integral_constant<int, 0> bessel_no_int_tag;      // No integer optimisation possible.
-      typedef std::integral_constant<int, 1> bessel_maybe_int_tag;   // Maybe integer optimisation.
-      typedef std::integral_constant<int, 2> bessel_int_tag;         // Definite integer optimisation.
+      using bessel_no_int_tag = std::integral_constant<int, 0>;      // No integer optimisation possible.
+      using bessel_maybe_int_tag = std::integral_constant<int, 1>;   // Maybe integer optimisation.
+      using bessel_int_tag = std::integral_constant<int, 2>;         // Definite integer optimisation.
 
       template <class T1, class T2, class Policy>
       struct bessel_traits
@@ -650,7 +650,7 @@ namespace boost
             typename tools::promote_args<T1, T2>::type
          >::type;
 
-         typedef typename policies::precision<result_type, Policy>::type precision_type;
+         using precision_type = typename policies::precision<result_type, Policy>::type;
 
          using optimisation_tag = typename std::conditional<
             (precision_type::value <= 0 || precision_type::value > 64),
@@ -900,11 +900,7 @@ namespace boost
    template <class T, class U>
    struct expint_result
    {
-      typedef typename std::conditional<
-         policies::is_policy<U>::value,
-         typename tools::promote_args<T>::type,
-         typename tools::promote_args<U>::type
-      >::type type;
+      using type = typename std::conditional<policies::is_policy<U>::value, typename tools::promote_args<T>::type, typename tools::promote_args<U>::type>::type;
    };
 
    } // namespace detail

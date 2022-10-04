@@ -82,7 +82,7 @@ T double_factorial(unsigned i, const Policy& pol)
       if(i < max_factorial<T>::value)
       {
          unsigned n = (i - 1) / 2;
-         return ceil(unchecked_factorial<T>(i) / (ldexp(T(1), (int)n) * unchecked_factorial<T>(n)) - 0.5f);
+         return ceil(unchecked_factorial<T>(i) / (ldexp(T(1), static_cast<int>(n)) * unchecked_factorial<T>(n)) - 0.5f);
       }
       //
       // Fallthrough: i is too large to use table lookup, try the
@@ -97,8 +97,8 @@ T double_factorial(unsigned i, const Policy& pol)
       // even i:
       unsigned n = i / 2;
       T result = factorial<T>(n, pol);
-      if(ldexp(tools::max_value<T>(), -(int)n) > result)
-         return result * ldexp(T(1), (int)n);
+      if(ldexp(tools::max_value<T>(), -static_cast<int>(n)) > result)
+         return result * ldexp(T(1), static_cast<int>(n));
    }
    //
    // If we fall through to here then the result is infinite:

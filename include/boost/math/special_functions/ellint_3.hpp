@@ -255,7 +255,11 @@ T ellint_pi_imp(T v, T phi, T k, T vc, const Policy& pol)
    //
    BOOST_MATH_ASSERT(fabs(phi) < constants::half_pi<T>());
    BOOST_MATH_ASSERT(phi >= 0);
-   T x, y, z, p, t;
+   T x;
+   T y;
+   T z;
+   T p;
+   T t;
    T cosp = cos(phi);
    x = cosp * cosp;
    t = sphi * sphi;

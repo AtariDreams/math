@@ -14,7 +14,7 @@
     class triangular_distribution
     {
     public:
-       typedef RealType value_type;
+       using value_type = RealType;
        typedef Policy   policy_type;
 
        triangular_distribution(RealType lower = -1, RealType mode = 0, RealType upper = 1); // Constructor.

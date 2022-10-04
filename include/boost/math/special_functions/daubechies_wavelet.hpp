@@ -53,7 +53,7 @@ namespace boost::math {
          Real term = 0;
          for (int64_t k = 0; k < static_cast<int64_t>(d.size()); ++k)
          {
-            int64_t idx = (int64_t(1) << (j_max - 1)) * (1 - 2 * p + k) + l;
+            int64_t idx = (static_cast<int64_t>(1) << (j_max - 1)) * (1 - 2 * p + k) + l;
             if (idx < 0 || idx >= static_cast<int64_t>(phijk.size()))
             {
                continue;

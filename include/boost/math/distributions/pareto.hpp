@@ -133,8 +133,8 @@ namespace boost
     class pareto_distribution
     {
     public:
-      typedef RealType value_type;
-      typedef Policy policy_type;
+      using value_type = RealType;
+      using policy_type = Policy;
 
       pareto_distribution(RealType l_scale = 1, RealType l_shape = 1)
         : m_scale(l_scale), m_shape(l_shape)

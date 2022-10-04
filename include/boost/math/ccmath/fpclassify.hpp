@@ -24,7 +24,7 @@ inline constexpr int fpclassify(T x)
     {
         return boost::math::ccmath::isnan(x) ? FP_NAN :
                boost::math::ccmath::isinf(x) ? FP_INFINITE :
-               boost::math::ccmath::abs(x) == T(0) ? FP_ZERO :
+               boost::math::ccmath::abs(x) == static_cast<T>(0) ? FP_ZERO :
                boost::math::ccmath::abs(x) > 0 && boost::math::ccmath::abs(x) < (std::numeric_limits<T>::min)() ? FP_SUBNORMAL : FP_NORMAL;
     }
     else

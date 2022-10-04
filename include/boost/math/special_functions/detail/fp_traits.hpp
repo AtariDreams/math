@@ -165,7 +165,7 @@ struct extended_double_precision {};
 
 template<class T> struct fp_traits_native
 {
-    typedef native_tag method;
+    using method = native_tag;
 };
 
 // generic_tag version -------------------------------------------------------------
@@ -173,7 +173,7 @@ template<class T> struct fp_traits_native
 template<class T, class U> struct fp_traits_non_native
 {
 #ifndef BOOST_NO_LIMITS_COMPILE_TIME_CONSTANTS
-   typedef generic_tag<std::numeric_limits<T>::is_specialized> method;
+   using method = generic_tag<std::numeric_limits<T>::is_specialized>;
 #else
    typedef generic_tag<false> method;
 #endif
@@ -210,14 +210,14 @@ Static function members:
 
 template<> struct fp_traits_non_native<float, single_precision>
 {
-    typedef ieee_copy_all_bits_tag method;
+    using method = ieee_copy_all_bits_tag;
 
     static constexpr uint32_t sign        = 0x80000000u;
     static constexpr uint32_t exponent    = 0x7f800000;
     static constexpr uint32_t flag        = 0x00000000;
     static constexpr uint32_t significand = 0x007fffff;
 
-    typedef uint32_t bits;
+    using bits = uint32_t;
     static void get_bits(float x, uint32_t& a) { std::memcpy(&a, &x, 4); }
     static void set_bits(float& x, uint32_t a) { std::memcpy(&x, &a, 4); }
 };
@@ -258,7 +258,7 @@ private:
 
 template<> struct fp_traits_non_native<double, double_precision>
 {
-    typedef ieee_copy_all_bits_tag method;
+    using method = ieee_copy_all_bits_tag;
 
     static constexpr uint64_t sign     = static_cast<uint64_t>(0x80000000u) << 32;
     static constexpr uint64_t exponent = static_cast<uint64_t>(0x7ff00000) << 32;
@@ -266,7 +266,7 @@ template<> struct fp_traits_non_native<double, double_precision>
     static constexpr uint64_t significand
         = (static_cast<uint64_t>(0x000fffff) << 32) + static_cast<uint64_t>(0xffffffffu);
 
-    typedef uint64_t bits;
+    using bits = uint64_t;
     static void get_bits(double x, uint64_t& a) { std::memcpy(&a, &x, 8); }
     static void set_bits(double& x, uint64_t a) { std::memcpy(&x, &a, 8); }
 };
@@ -311,7 +311,7 @@ private:
 
 template<> struct fp_traits_non_native<long double, double_precision>
 {
-    typedef ieee_copy_all_bits_tag method;
+    using method = ieee_copy_all_bits_tag;
 
     static const uint64_t sign     = static_cast<uint64_t>(0x80000000u) << 32;
     static const uint64_t exponent = static_cast<uint64_t>(0x7ff00000) << 32;
@@ -319,7 +319,7 @@ template<> struct fp_traits_non_native<long double, double_precision>
     static const uint64_t significand
         = (static_cast<uint64_t>(0x000fffff) << 32) + static_cast<uint64_t>(0xffffffffu);
 
-    typedef uint64_t bits;
+    using bits = uint64_t;
     static void get_bits(long double x, uint64_t& a) { std::memcpy(&a, &x, 8); }
     static void set_bits(long double& x, uint64_t a) { std::memcpy(&x, &a, 8); }
 };
@@ -463,14 +463,14 @@ struct fp_traits_non_native<long double, extended_double_precision>
 template<>
 struct fp_traits_non_native<long double, extended_double_precision>
 {
-    typedef ieee_copy_leading_bits_tag method;
+    using method = ieee_copy_leading_bits_tag;
 
     static constexpr uint32_t sign        = 0x80000000u;
     static constexpr uint32_t exponent    = 0x7fff0000;
     static constexpr uint32_t flag        = 0x00000000;
     static constexpr uint32_t significand = 0x0000ffff;
 
-    typedef uint32_t bits;
+    using bits = uint32_t;
 
     static void get_bits(long double x, uint32_t& a)
     {
@@ -495,32 +495,32 @@ private:
 
 template<int n, bool fp> struct size_to_precision
 {
-   typedef unknown_precision type;
+   using type = unknown_precision;
 };
 
 template<> struct size_to_precision<4, true>
 {
-    typedef single_precision type;
+    using type = single_precision;
 };
 
 template<> struct size_to_precision<8, true>
 {
-    typedef double_precision type;
+    using type = double_precision;
 };
 
 template<> struct size_to_precision<10, true>
 {
-    typedef extended_double_precision type;
+    using type = extended_double_precision;
 };
 
 template<> struct size_to_precision<12, true>
 {
-    typedef extended_double_precision type;
+    using type = extended_double_precision;
 };
 
 template<> struct size_to_precision<16, true>
 {
-    typedef extended_double_precision type;
+    using type = extended_double_precision;
 };
 
 //------------------------------------------------------------------------------
@@ -531,23 +531,23 @@ template<> struct size_to_precision<16, true>
 template <class T>
 struct select_native
 {
-    typedef typename size_to_precision<sizeof(T), ::std::is_floating_point<T>::value>::type precision;
-    typedef fp_traits_non_native<T, precision> type;
+    using precision = typename size_to_precision<sizeof(T), ::std::is_floating_point<T>::value>::type;
+    using type = fp_traits_non_native<T, precision>;
 };
 template<>
 struct select_native<float>
 {
-    typedef fp_traits_native<float> type;
+    using type = fp_traits_native<float>;
 };
 template<>
 struct select_native<double>
 {
-    typedef fp_traits_native<double> type;
+    using type = fp_traits_native<double>;
 };
 template<>
 struct select_native<long double>
 {
-    typedef fp_traits_native<long double> type;
+    using type = fp_traits_native<long double>;
 };
 
 //------------------------------------------------------------------------------
@@ -569,13 +569,13 @@ struct select_native<long double>
 
 template<class T> struct fp_traits
 {
-    typedef typename size_to_precision<sizeof(T), ::std::is_floating_point<T>::value>::type precision;
+    using precision = typename size_to_precision<sizeof(T), ::std::is_floating_point<T>::value>::type;
 #if defined(BOOST_MATH_USE_STD_FPCLASSIFY) && !defined(BOOST_MATH_DISABLE_STD_FPCLASSIFY)
     typedef typename select_native<T>::type type;
 #else
-    typedef fp_traits_non_native<T, precision> type;
+    using type = fp_traits_non_native<T, precision>;
 #endif
-    typedef fp_traits_non_native<T, precision> sign_change_type;
+    using sign_change_type = fp_traits_non_native<T, precision>;
 };
 
 //------------------------------------------------------------------------------

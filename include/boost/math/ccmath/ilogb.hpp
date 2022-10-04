@@ -22,7 +22,7 @@ inline constexpr int ilogb(Real arg) noexcept
 {
     if(BOOST_MATH_IS_CONSTANT_EVALUATED(arg))
     {
-        return boost::math::ccmath::abs(arg) == Real(0) ? FP_ILOGB0 :
+        return boost::math::ccmath::abs(arg) == static_cast<Real>(0) ? FP_ILOGB0 :
                boost::math::ccmath::isinf(arg) ? INT_MAX :
                boost::math::ccmath::isnan(arg) ? FP_ILOGBNAN :
                static_cast<int>(boost::math::ccmath::logb(arg));

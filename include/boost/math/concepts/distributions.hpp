@@ -40,7 +40,7 @@ template <class RealType>
 class distribution_archetype
 {
 public:
-   typedef RealType value_type;
+   using value_type = RealType;
 
    distribution_archetype(const distribution_archetype&); // Copy constructible.
    distribution_archetype& operator=(const distribution_archetype&); // Assignable.

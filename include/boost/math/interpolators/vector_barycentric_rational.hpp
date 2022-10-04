@@ -49,8 +49,7 @@ public:
 
     void eval_with_prime(Point& x, Point& dxdt, Real t) const {
         m_imp->eval_with_prime(x, dxdt, t);
-        return;
-    }
+   }
 
     std::pair<Point, Point> eval_with_prime(Real t) const {
         Point x;
@@ -68,14 +67,12 @@ template <class TimeContainer, class SpaceContainer>
 vector_barycentric_rational<TimeContainer, SpaceContainer>::vector_barycentric_rational(TimeContainer&& times, SpaceContainer&& points, size_t approximation_order):
  m_imp(std::make_shared<detail::vector_barycentric_rational_imp<TimeContainer, SpaceContainer>>(std::move(times), std::move(points), approximation_order))
 {
-    return;
-}
+    }
 
 template <class TimeContainer, class SpaceContainer>
 void vector_barycentric_rational<TimeContainer, SpaceContainer>::operator()(typename SpaceContainer::value_type& p, typename TimeContainer::value_type t) const
 {
     m_imp->operator()(p, t);
-    return;
 }
 
 }}}

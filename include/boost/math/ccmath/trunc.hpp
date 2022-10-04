@@ -32,7 +32,7 @@ inline constexpr Real trunc(Real arg) noexcept
 {
     if(BOOST_MATH_IS_CONSTANT_EVALUATED(arg))
     {
-        return boost::math::ccmath::abs(arg) == Real(0) ? arg :
+        return boost::math::ccmath::abs(arg) == static_cast<Real>(0) ? arg :
                boost::math::ccmath::isinf(arg) ? arg :
                boost::math::ccmath::isnan(arg) ? arg :
                boost::math::ccmath::detail::trunc_impl(arg);

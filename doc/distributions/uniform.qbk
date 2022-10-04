@@ -14,7 +14,7 @@
     class uniform_distribution
     {
     public:
-       typedef RealType value_type;
+       using value_type = RealType;
 
        uniform_distribution(RealType lower = 0, RealType upper = 1); // Constructor.
           : m_lower(lower), m_upper(upper) // Default is standard uniform distribution.

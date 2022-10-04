@@ -279,8 +279,8 @@ namespace boost
     class binomial_distribution
     {
     public:
-      typedef RealType value_type;
-      typedef Policy policy_type;
+      using value_type = RealType;
+      using policy_type = Policy;
 
       binomial_distribution(RealType n = 1, RealType p = 0.5) : m_n(n), m_p(p)
       { // Default n = 1 is the Bernoulli distribution
@@ -409,7 +409,7 @@ namespace boost
         RealType m_p; // success_fraction
       }; // template <class RealType, class Policy> class binomial_distribution
 
-      typedef binomial_distribution<> binomial;
+      using binomial = binomial_distribution<>;
       // typedef binomial_distribution<double> binomial;
       // IS now included since no longer a name clash with function binomial.
       //typedef binomial_distribution<double> binomial; // Reserved name of type double.

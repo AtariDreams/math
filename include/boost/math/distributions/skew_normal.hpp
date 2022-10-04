@@ -55,8 +55,8 @@ namespace boost{ namespace math{
   class skew_normal_distribution
   {
   public:
-    typedef RealType value_type;
-    typedef Policy policy_type;
+    using value_type = RealType;
+    using policy_type = Policy;
 
     skew_normal_distribution(RealType l_location = 0, RealType l_scale = 1, RealType l_shape = 0)
       : location_(l_location), scale_(l_scale), shape_(l_shape)

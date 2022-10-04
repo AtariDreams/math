@@ -33,9 +33,9 @@ namespace boost {
             template <class Recurrence>
             struct function_ratio_from_backwards_recurrence_fraction
             {
-               typedef typename std::remove_reference<decltype(std::get<0>(std::declval<Recurrence&>()(0)))>::type value_type;
-               typedef std::pair<value_type, value_type> result_type;
-               function_ratio_from_backwards_recurrence_fraction(const Recurrence& r) : r(r), k(0) {}
+               using value_type = typename std::remove_reference<decltype(std::get<0>(std::declval<Recurrence &>()(0)))>::type;
+               using result_type = std::pair<value_type, value_type>;
+               function_ratio_from_backwards_recurrence_fraction(const Recurrence& r) : r(r), {}
 
                result_type operator()()
                {
@@ -53,7 +53,7 @@ namespace boost {
                function_ratio_from_backwards_recurrence_fraction operator=(const function_ratio_from_backwards_recurrence_fraction&) = delete;
 
                Recurrence r;
-               int k;
+               int k{0};
             };
 
             template <class R, class T>
@@ -73,7 +73,7 @@ namespace boost {
             template <class Recurrence>
             struct recurrence_offsetter
             {
-               typedef decltype(std::declval<Recurrence&>()(0)) result_type;
+               using result_type = decltype(std::declval<Recurrence &>()(0));
                recurrence_offsetter(Recurrence const& rr, int offset) : r(rr), k(offset) {}
                result_type operator()(int i)
                {
@@ -240,7 +240,7 @@ namespace boost {
          template <class Recurrence>
          struct forward_recurrence_iterator
          {
-            typedef typename std::remove_reference<decltype(std::get<0>(std::declval<Recurrence&>()(0)))>::type value_type;
+            using value_type = typename std::remove_reference<decltype(std::get<0>(std::declval<Recurrence &>()(0)))>::type;
 
             forward_recurrence_iterator(const Recurrence& r, value_type f_n_minus_1, value_type f_n)
                : f_n_minus_1(f_n_minus_1), f_n(f_n), coef(r), k(0) {}
@@ -265,7 +265,7 @@ namespace boost {
                return *this;
             }
 
-            forward_recurrence_iterator operator++(int)
+            const forward_recurrence_iterator operator++(int)
             {
                forward_recurrence_iterator t(*this);
                ++(*this);
@@ -282,7 +282,7 @@ namespace boost {
          template <class Recurrence>
          struct backward_recurrence_iterator
          {
-            typedef typename std::remove_reference<decltype(std::get<0>(std::declval<Recurrence&>()(0)))>::type value_type;
+            using value_type = typename std::remove_reference<decltype(std::get<0>(std::declval<Recurrence &>()(0)))>::type;
 
             backward_recurrence_iterator(const Recurrence& r, value_type f_n_plus_1, value_type f_n)
                : f_n_plus_1(f_n_plus_1), f_n(f_n), coef(r), k(0) {}
@@ -307,7 +307,7 @@ namespace boost {
                return *this;
             }
 
-            backward_recurrence_iterator operator++(int)
+            const backward_recurrence_iterator operator++(int)
             {
                backward_recurrence_iterator t(*this);
                ++(*this);

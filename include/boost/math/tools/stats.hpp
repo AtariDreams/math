@@ -25,7 +25,7 @@ public:
         m_max(-tools::max_value<T>()),
         m_total(0),
         m_squared_total(0),
-        m_count(0)
+
    {}
    void add(const T& val)
    {
@@ -77,7 +77,7 @@ public:
    }
 private:
    T m_min, m_max, m_total, m_squared_total;
-   std::uintmax_t m_count;
+   std::uintmax_t m_count{0};
 };
 
 } // namespace tools

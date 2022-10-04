@@ -113,8 +113,8 @@ namespace boost{ namespace math
   class uniform_distribution
   {
   public:
-    typedef RealType value_type;
-    typedef Policy policy_type;
+    using value_type = RealType;
+    using policy_type = Policy;
 
     uniform_distribution(RealType l_lower = 0, RealType l_upper = 1) // Constructor.
       : m_lower(l_lower), m_upper(l_upper) // Default is standard uniform distribution.
@@ -138,7 +138,7 @@ namespace boost{ namespace math
     RealType m_upper;  // distribution upper aka b.
   }; // class uniform_distribution
 
-  typedef uniform_distribution<double> uniform;
+  using uniform = uniform_distribution<double>;
 
   #ifdef __cpp_deduction_guides
   template <class RealType>

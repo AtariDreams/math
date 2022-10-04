@@ -41,11 +41,11 @@ namespace boost {
       template <class T, class Policy = boost::math::policies::policy<> >
       struct bessel_j_backwards_iterator
       {
-         typedef std::ptrdiff_t difference_type;
-         typedef T value_type;
-         typedef T* pointer;
-         typedef T& reference;
-         typedef std::input_iterator_tag iterator_category;
+         using difference_type = std::ptrdiff_t;
+         using value_type = T;
+         using pointer = T *;
+         using reference = T &;
+         using iterator_category = std::input_iterator_tag;
 
          bessel_j_backwards_iterator(const T& v, const T& x)
             : it(detail::bessel_jy_recurrence<T>(v, x), boost::math::cyl_bessel_j(v, x, Policy())) 
@@ -89,11 +89,11 @@ namespace boost {
       template <class T, class Policy = boost::math::policies::policy<> >
       struct bessel_i_backwards_iterator
       {
-         typedef std::ptrdiff_t difference_type;
-         typedef T value_type;
-         typedef T* pointer;
-         typedef T& reference;
-         typedef std::input_iterator_tag iterator_category;
+         using difference_type = std::ptrdiff_t;
+         using value_type = T;
+         using pointer = T *;
+         using reference = T &;
+         using iterator_category = std::input_iterator_tag;
 
          bessel_i_backwards_iterator(const T& v, const T& x)
             : it(detail::bessel_ik_recurrence<T>(v, x), boost::math::cyl_bessel_i(v, x, Policy()))
@@ -136,11 +136,11 @@ namespace boost {
       template <class T, class Policy = boost::math::policies::policy<> >
       struct bessel_i_forwards_iterator
       {
-         typedef std::ptrdiff_t difference_type;
-         typedef T value_type;
-         typedef T* pointer;
-         typedef T& reference;
-         typedef std::input_iterator_tag iterator_category;
+         using difference_type = std::ptrdiff_t;
+         using value_type = T;
+         using pointer = T *;
+         using reference = T &;
+         using iterator_category = std::input_iterator_tag;
 
          bessel_i_forwards_iterator(const T& v, const T& x)
             : it(detail::bessel_ik_recurrence<T>(v, x), boost::math::cyl_bessel_i(v, x, Policy()))
