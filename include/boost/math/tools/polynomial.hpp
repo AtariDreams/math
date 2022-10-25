@@ -330,7 +330,7 @@ public:
    polynomial(const polynomial<U>& p)
    {
       m_data.resize(p.size());
-      for(unsigned i = 0; i < p.size(); ++i)
+      for(std::size_t i = 0; i < p.size(); ++i)
       {
          m_data[i] = boost::math::tools::real_cast<T>(p[i]);
       }
@@ -379,7 +379,7 @@ public:
 
    T operator()(T z) const
    {
-      return m_data.size() > 0 ? boost::math::tools::evaluate_polynomial((m_data).data(), z, m_data.size()) : T(0);
+      return m_data.size() > 0 ? boost::math::tools::evaluate_polynomial(m_data.data(), z, m_data.size()) : T(0);
    }
    std::vector<T> chebyshev() const
    {

@@ -4311,7 +4311,7 @@ mp_t factorial(unsigned n)
 }
 
 template <class T>
-T binomial(int n, int k, T)
+T binomial(unsigned n, unsigned k, T)
 {
    T result;
    if(k < 0) 
@@ -4686,12 +4686,12 @@ struct lanczos_rational
       {
          s1 = num[N-1];
          s2 = denom[N-1];
-         for(unsigned i = N-2; i >= 0; --i)
+         for(int i = N-2; i >= 0; --i)
          {
             s1 *= z;
             s2 *= z;
             s1 += num[i];
-            s2 += num[i];
+            s2 += denom[i];
          }
          s1 /= s2;
          return prefix * s1;
@@ -4721,7 +4721,7 @@ struct lanczos_rational
    {
       U l_denom_coef[2] = { 0, 1 };
       boost::math::tools::polynomial<U> l_denom(l_denom_coef, 1), l_num(info.c[1]);
-      for(unsigned i = 2; i < info.c.size(); ++i)
+      for(std::size_t i = 2; i < info.c.size(); ++i)
       {
          l_denom_coef[0] = i - 1;
          boost::math::tools::polynomial<U> bot(l_denom_coef, 1), top(info.c[i]);
@@ -4731,7 +4731,7 @@ struct lanczos_rational
          l_num += top;
       }
       l_num += l_denom * info.c[0];
-      for(unsigned i = 0; i < info.c.size(); ++i)
+      for(std::size_t i = 0; i < info.c.size(); ++i)
       {
          num.push_back(boost::math::tools::real_cast<T>(l_num[i]));
          denom.push_back(boost::math::tools::real_cast<T>(l_denom[i]));
@@ -5014,7 +5014,7 @@ void print_test_values(const std::vector<std::vector<mp_t> >& v, const char* nam
    std::cout << std::setprecision(110);
    std::cout << 
       "   static const std::array<std::array<T, 3>, " << v.size() << "> " << name << " = {\n";
-   for(unsigned i = 0; i < v.size(); ++i)
+   for(size_t i = 0; i < v.size(); ++i)
    {
       std::cout << "      SC_(" << (v[i][0] + offset) << "), SC_(" << v[i][1] << "), SC_(" << v[i][2] << "),\n";
    }
@@ -5055,7 +5055,7 @@ void find_best_lanczos(const char* name, T eps, int max_scan = 100)
 
       std::cout << std::setw(20) << std::right << "N" << std::setw(20) << std::right << "g" << std::setw(20) << std::right << "eps" << std::setw(20) << std::right << "c at 1" << std::setw(20) << std::right << "c at 2" << std::setw(20) << std::right << "time (ms)\n";
 
-      for (int i = 0; i < sizeof(sweet_spots) / sizeof(sweet_spots[0]); ++i)
+      for (std::size_t i = 0; i < sizeof(sweet_spots) / sizeof(sweet_spots[0]); ++i)
       {
          if ((sweet_spots[i].err < eps * 10) && (sweet_spots[i].N < max_scan))
          {
@@ -5065,8 +5065,8 @@ void find_best_lanczos(const char* name, T eps, int max_scan = 100)
             {
                std::cout << std::setprecision(14) << std::fixed << std::setw(20) << std::right << sweet_spots[i].N
                   << std::setw(20) << std::right << sweet_spots[i].g << std::setw(20) << std::right << static_cast<int>(err / eps)
-                  << std::setw(20) << std::right << (unsigned)lanczos_conditioning_near_1(info) << std::setw(20) << std::right << (unsigned)lanczos_conditioning_near_2(info)
-                  << std::setw(20) << std::right << (int)(exec_time * 1000) << std::endl;
+                  << std::setw(20) << std::right << static_cast<unsigned>(lanczos_conditioning_near_1(info)) << std::setw(20) << std::right << static_cast<unsigned>(lanczos_conditioning_near_2(info))
+                  << std::setw(20) << std::right << static_cast<int>(exec_time * 1000) << std::endl;
             }
             else
                std::cout << "Skipping spot with error: " << std::setprecision(5) << err << std::endl;
@@ -5103,7 +5103,7 @@ void find_best_lanczos(const char* name, T eps, int max_scan = 100)
    }
 }
 
-void scan_for_sweet_spots(int N)
+void scan_for_sweet_spots(unsigned N)
 {
    mp_t r = N * 0.66;
    lanczos_info<mp_t> lower, upper(generate_lanczos(N + 1, r));
@@ -5147,7 +5147,7 @@ int main(int argc, char*argv [])
          "  -sweet        Scan for more sweet spots for the arbitrary parameter G: these "
          "                will need to cut and pasted into the big table at the start of this file"
          "                in order to search for greater precision approximations than otherwise supported."
-         "  -data         print out the test data\n" << std::flush;
+         "  -data         print out the test data" << std::endl;
       return 1;
    }
 
