@@ -71,12 +71,12 @@ void find_number_of_trials(double failures, double p)
            " Value (%)        Of Trials \n"
            "____________________________\n";
    // Now print out the data for the alpha table values.
-  for(unsigned i = 0; i < sizeof(alpha)/sizeof(alpha[0]); ++i)
+  for(const auto& i : alpha)
    { // Confidence values %:
-      cout << fixed << setprecision(3) << setw(10) << right << 100 * (1-alpha[i]) << "      "
+      cout << fixed << setprecision(3) << setw(10) << right << 100 * (1-i) << "      "
       // find_minimum_number_of_trials
       << setw(6) << right
-      << (int)ceil(negative_binomial::find_minimum_number_of_trials(failures, p, alpha[i]))
+      << (int)ceil(negative_binomial::find_minimum_number_of_trials(failures, p, i))
       << endl;
    }
    cout << endl;

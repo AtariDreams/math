@@ -117,7 +117,7 @@ Finally note that `binomial_distribution` provides a choice of two
 methods for the calculation, we print out the results from both 
 methods in this example:
 
-      for(unsigned i = 0; i < sizeof(alpha)/sizeof(alpha[0]); ++i)
+      for(const auto& i : alpha)
       {
          // Confidence value:
          cout << fixed << setprecision(3) << setw(10) << right << 100 * (1-alpha[i]);
@@ -243,13 +243,13 @@ Much of the rest of the program is pretty-printing, the important part
 is in the calculation of maximum number of permitted trials for each
 value of alpha:
 
-   for(unsigned i = 0; i < sizeof(alpha)/sizeof(alpha[0]); ++i)
+   for(const auto& i : alpha)
    {
       // Confidence value:
-      cout << fixed << setprecision(3) << setw(10) << right << 100 * (1-alpha[i]);
+      cout << fixed << setprecision(3) << setw(10) << right << 100 * (1-i);
       // calculate trials:
       double t = binomial::find_maximum_number_of_trials(
-                     successes, p, alpha[i]);
+                     successes, p, i);
       t = floor(t);
       // Print Trials:
       cout << fixed << setprecision(5) << setw(15) << right << t << endl;

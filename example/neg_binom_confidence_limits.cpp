@@ -83,13 +83,13 @@ then we would *not* have divided by two.
 */
 
    // Now print out the upper and lower limits for the alpha table values.
-   for(unsigned i = 0; i < sizeof(alpha)/sizeof(alpha[0]); ++i)
+   for(const auto& i : alpha)
    {
       // Confidence value:
-      cout << fixed << setprecision(3) << setw(10) << right << 100 * (1-alpha[i]);
+      cout << fixed << setprecision(3) << setw(10) << right << 100 * (1-i);
       // Calculate bounds:
-      double lower = negative_binomial::find_lower_bound_on_p(trials, successes, alpha[i]/2);
-      double upper = negative_binomial::find_upper_bound_on_p(trials, successes, alpha[i]/2);
+      double lower = negative_binomial::find_lower_bound_on_p(trials, successes, i/2);
+      double upper = negative_binomial::find_upper_bound_on_p(trials, successes, i/2);
       // Print limits:
       cout << fixed << setprecision(5) << setw(15) << right << lower;
       cout << fixed << setprecision(5) << setw(15) << right << upper << endl;

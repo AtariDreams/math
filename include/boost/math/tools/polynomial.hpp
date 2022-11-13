@@ -330,7 +330,7 @@ public:
    polynomial(const polynomial<U>& p)
    {
       m_data.resize(p.size());
-      for(unsigned i = 0; i < p.size(); ++i)
+      for(size_type i = 0; i < p.size(); ++i)
       {
          m_data[i] = boost::math::tools::real_cast<T>(p[i]);
       }
@@ -409,7 +409,7 @@ public:
       }
 
       std::vector<T> p_data(m_data.size() - 1);
-      for (size_t i = 0; i < p_data.size(); ++i) {
+      for (size_type i = 0; i < p_data.size(); ++i) {
           p_data[i] = m_data[i+1]*static_cast<T>(i+1);
       }
       return polynomial<T>(std::move(p_data));
@@ -423,7 +423,7 @@ public:
       std::vector<T> i_data(m_data.size() + 1);
       // Choose integration constant such that P(0) = 0.
       i_data[0] = T(0);
-      for (size_t i = 1; i < i_data.size(); ++i)
+      for (size_type i = 1; i < i_data.size(); ++i)
       {
           i_data[i] = m_data[i-1]/static_cast<T>(i);
       }
@@ -507,8 +507,8 @@ public:
            return;
        }
        std::vector<T> prod(a.size() + b.size() - 1, T(0));
-       for (unsigned i = 0; i < a.size(); ++i)
-           for (unsigned j = 0; j < b.size(); ++j)
+       for (size_type i = 0; i < a.size(); ++i)
+           for (size_type j = 0; j < b.size(); ++j)
                prod[i+j] += a.m_data[i] * b.m_data[j];
        m_data.swap(prod);
    }
@@ -841,7 +841,7 @@ template <class charT, class traits, class T>
 inline std::basic_ostream<charT, traits>& operator << (std::basic_ostream<charT, traits>& os, const polynomial<T>& poly)
 {
    os << "{ ";
-   for(unsigned i = 0; i < poly.size(); ++i)
+   for(size_type i = 0; i < poly.size(); ++i)
    {
       if(i) os << ", ";
       os << poly[i];

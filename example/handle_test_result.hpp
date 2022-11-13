@@ -149,7 +149,7 @@ void handle_test_result(const boost::math::tools::test_result<T>& result,
       {
          std::cout << std::setprecision(std::numeric_limits<long double>::digits10 + 2);
       }
-      for(unsigned i = 0; i < worst.size(); ++i)
+      for(size_t i = 0; i < worst.size(); ++i)
       {
          if(i)
             std::cout << ", ";
@@ -205,7 +205,7 @@ void print_test_result(const boost::math::tools::test_result<T>& result,
    {
       std::cout << "\n    worst case at row: "
          << row << "\n    { ";
-      for(unsigned i = 0; i < worst.size(); ++i)
+      for(size_t i = 0; i < worst.size(); ++i)
       {
          if(i)
             std::cout << ", ";

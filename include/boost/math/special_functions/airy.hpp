@@ -392,8 +392,7 @@ inline OutputIterator airy_ai_zero(
 
    for(unsigned i = 0; i < number_of_zeros; ++i)
    {
-      *out_it = boost::math::airy_ai_zero<result_type>(start_index + i, pol);
-      ++out_it;
+      *out_it++ = boost::math::airy_ai_zero<result_type>(start_index + i, pol);
    }
    return out_it;
 }
@@ -449,8 +448,7 @@ inline OutputIterator airy_bi_zero(
 
    for(unsigned i = 0; i < number_of_zeros; ++i)
    {
-      *out_it = boost::math::airy_bi_zero<result_type>(start_index + i, pol);
-      ++out_it;
+      *out_it++ = boost::math::airy_bi_zero<result_type>(start_index + i, pol);
    }
    return out_it;
 }

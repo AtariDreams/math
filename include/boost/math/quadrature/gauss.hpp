@@ -47,7 +47,7 @@ class gauss_detail
    static std::vector<Real> calculate_weights()
    {
       std::vector<Real> result(abscissa().size(), 0);
-      for (unsigned i = 0; i < abscissa().size(); ++i)
+      for (std::size_t i = 0; i < abscissa().size(); ++i)
       {
          Real x = abscissa()[i];
          Real p = boost::math::legendre_p_prime(N, x);

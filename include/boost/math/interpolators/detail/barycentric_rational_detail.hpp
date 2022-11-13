@@ -66,7 +66,7 @@ barycentric_rational_imp<Real>::barycentric_rational_imp(InputIterator1 start_x,
     // Big sad memcpy.
     m_x.resize(n);
     m_y.resize(n);
-    for(unsigned i = 0; start_x != end_x; ++start_x, ++start_y, ++i)
+    for(std::size_t i = 0; start_x != end_x; ++start_x, ++start_y, ++i)
     {
         // But if we're going to do a memcpy, we can do some error checking which is inexpensive relative to the copy:
         if(boost::math::isnan(*start_x))

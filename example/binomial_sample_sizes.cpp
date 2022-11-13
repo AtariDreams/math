@@ -58,7 +58,7 @@ void find_max_sample_size(double p, unsigned successes)
    //
    // Now print out the data for the table rows.
    //
-   for(unsigned i = 0; i < sizeof(alpha)/sizeof(alpha[0]); ++i)
+   for(size_t i = 0; i < sizeof(alpha)/sizeof(alpha[0]); ++i)
    {
       // Confidence value:
       cout << fixed << setprecision(3) << setw(10) << right << 100 * (1-alpha[i]);

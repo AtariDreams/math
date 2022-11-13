@@ -72,12 +72,12 @@ void confidence_limits_on_mean(double Sm, double Sd, unsigned Sn)
    //
    // Now print out the data for the table rows.
    //
-   for(unsigned i = 0; i < sizeof(alpha)/sizeof(alpha[0]); ++i)
+   for(const auto& i : alpha)
    {
       // Confidence value:
-      cout << fixed << setprecision(3) << setw(10) << right << 100 * (1-alpha[i]);
+      cout << fixed << setprecision(3) << setw(10) << right << 100 * (1-i);
       // calculate T:
-      double T = quantile(complement(dist, alpha[i] / 2));
+      double T = quantile(complement(dist, i / 2));
       // Print T:
       cout << fixed << setprecision(3) << setw(10) << right << T;
       // Calculate width of interval (one sided):

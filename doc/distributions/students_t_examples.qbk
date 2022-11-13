@@ -462,7 +462,7 @@ In this example, we assume that alpha and beta are the same, and call
 `find_degrees_of_freedom` twice: once with alpha for a one-sided test,
 and once with alpha/2 for a two-sided test.
 
-      for(unsigned i = 0; i < sizeof(alpha)/sizeof(alpha[0]); ++i)
+      for(size_t i = 0; i < sizeof(alpha)/sizeof(alpha[0]); ++i)
       {
          // Confidence value:
          cout << fixed << setprecision(3) << setw(10) << right << 100 * (1-alpha[i]);

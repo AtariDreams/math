@@ -156,7 +156,7 @@ public:
    void rescale(T a, T b)
    {
       T scale = (b - a) / (max - min);
-      for(unsigned i = 0; i < control_points.size(); ++i)
+      for(auto& control_point : control_points)
       {
          control_points[i] = (control_points[i] - min) * scale + a;
       }
@@ -222,7 +222,7 @@ void remez_minimax<T>::init_chebyshev()
    matrix_type A(terms, terms);
    vector_type b(terms);
    // fill in the y values:
-   for(unsigned i = 0; i < b.size(); ++i)
+   for(std::size_t i = 0; i < b.size(); ++i)
    {
       b[i] = func(zeros[i+1]);
    }
@@ -230,7 +230,7 @@ void remez_minimax<T>::init_chebyshev()
    unsigned offsetN = pinned ? 0 : 1;
    unsigned offsetD = offsetN + orderN;
    unsigned maxorder = (std::max)(orderN, orderD);
-   for(unsigned i = 0; i < b.size(); ++i)
+   for(std::size_t i = 0; i < b.size(); ++i)
    {
       T x0 = zeros[i+1];
       T x = x0;
@@ -262,7 +262,7 @@ void remez_minimax<T>::init_chebyshev()
    detail::remez_max_error_function<T> Ex(Err);
    m_max_error = 0;
    //int max_err_location = 0;
-   for(unsigned i = 0; i < unknowns; ++i)
+   for(std::size_t i = 0; i < unknowns; ++i)
    {
       std::pair<T, T> r = brent_find_minima(Ex, zeros[i], zeros[i+1], m_precision);
       maxima[i] = r.first;
@@ -414,7 +414,7 @@ T remez_minimax<T>::iterate()
    vector_type b(unknowns);
 
    // fill in evaluation of f(x) at each of the control points:
-   for(unsigned i = 0; i < b.size(); ++i)
+   for(std::size_t i = 0; i < b.size(); ++i)
    {
       // take care that none of our control points are at the origin:
       if(pinned && (control_points[i] == 0))
@@ -471,7 +471,7 @@ T remez_minimax<T>::iterate()
             std::cout << A(i, j) << " ";
          std::cout << "\n";
       }
-      std::cout << std::endl;
+      std::cout << std::flush;
    #endif
       //
       // Now go ahead and solve the expression to get our solution:
@@ -565,7 +565,7 @@ T remez_minimax<T>::iterate()
    detail::remez_error_function<T> Err(func, this->numerator(), this->denominator(), rel_error);
    zeros[0] = min;
    zeros[unknowns] = max;
-   for(unsigned i = 1; i < control_points.size(); ++i)
+   for(std::size_t i = 1; i < control_points.size(); ++i)
    {
       eps_tolerance<T> tol(m_precision);
       std::uintmax_t max_iter = 1000;

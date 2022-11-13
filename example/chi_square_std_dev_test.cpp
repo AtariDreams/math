@@ -62,13 +62,13 @@ void confidence_limits_on_std_deviation(
            "_____________________________________________\n";
    //
    // Now print out the data for the table rows.
-   for(unsigned i = 0; i < sizeof(alpha)/sizeof(alpha[0]); ++i)
+   for(const auto& i: alpha)
    {
       // Confidence value:
-      cout << fixed << setprecision(3) << setw(10) << right << 100 * (1-alpha[i]);
+      cout << fixed << setprecision(3) << setw(10) << right << 100 * (1-i);
       // Calculate limits:
-      double lower_limit = sqrt((N - 1) * Sd * Sd / quantile(complement(dist, alpha[i] / 2)));
-      double upper_limit = sqrt((N - 1) * Sd * Sd / quantile(dist, alpha[i] / 2));
+      double lower_limit = sqrt((N - 1) * Sd * Sd / quantile(complement(dist, i / 2)));
+      double upper_limit = sqrt((N - 1) * Sd * Sd / quantile(dist, i / 2));
       // Print Limits:
       cout << fixed << setprecision(5) << setw(15) << right << lower_limit;
       cout << fixed << setprecision(5) << setw(15) << right << upper_limit << endl;
@@ -108,9 +108,8 @@ void confidence_limits_on_std_deviation_alpha(
            "Observations        Lower          Upper\n"
            "                    Limit          Limit\n"
            "_____________________________________________\n";
-    for(unsigned i = 0; i < sizeof(obs)/sizeof(obs[0]); ++i)
+    for(const auto& N : obs)
    {
-     unsigned int N = obs[i]; // Observations
      // Start by declaring the distribution with the appropriate :
      chi_squared dist(N - 1);
 
@@ -242,20 +241,20 @@ void chi_squared_sample_sized(
    //
    // Now print out the data for the table rows.
    //
-   for(unsigned i = 0; i < sizeof(alpha)/sizeof(alpha[0]); ++i)
+   for(const auto& i : alpha)
    {
       // Confidence value:
-      cout << fixed << setprecision(3) << setw(10) << right << 100 * (1-alpha[i]);
+      cout << fixed << setprecision(3) << setw(10) << right << 100 * (1 - i);
       // Calculate df for a lower single-sided test:
       double df = chi_squared::find_degrees_of_freedom(
-         -diff, alpha[i], alpha[i], variance);
+         -diff, i, i, variance);
       // Convert to integral sample size (df is a floating point value in this implementation):
       double size = ceil(df) + 1;
       // Print size:
       cout << fixed << setprecision(0) << setw(16) << right << size;
       // Calculate df for an upper single-sided test:
       df = chi_squared::find_degrees_of_freedom(
-         diff, alpha[i], alpha[i], variance);
+         diff, i, i, variance);
       // Convert to integral sample size:
       size = ceil(df) + 1;
       // Print size:
